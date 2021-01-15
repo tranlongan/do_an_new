@@ -36,4 +36,10 @@ router.post(`/editAvatar`, controller.editAvatar);
 router.post(`/numberLike`, controller.numberLike);
 // điếm số like
 router.get(`/countNumberLike`, controller.countNumberLike);
+// gửi lời mời kết bạn
+router.get(`/sendFriendInvitations`, controller.sendFriendInvitations);
+// hủy lời mời
+router.get(`/deleteSendFriendInvitations`, controller.deleteSendFriendInvitations);
+
+
 module.exports = router;

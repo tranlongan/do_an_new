@@ -66,8 +66,9 @@ const startApp = (req, res) => {
 }
 
 // đăng ký
-const registerAccountUser = (req, res) => {
-    upload(req, res, (err) => {
+const registerAccountUser = async (req, res) => {
+    upload(req, res, async () => {
+
         const {dk_username_user, nameAccount_user, dk_password_user, dk_password_user1} = req.body;
         if (dk_username_user === '' || nameAccount_user === '' || dk_password_user === '' || dk_password_user1 === '') {
             res.json({
@@ -79,42 +80,47 @@ const registerAccountUser = (req, res) => {
                     msg: 'The two passwords are not the same'
                 })
             } else {
-                const sql = `INSERT INTO account_user (id, name_user, username, password) VALUES (null, '${nameAccount_user}', '${dk_username_user}','${dk_password_user}')`;
-                connection.query(sql, (err, result) => {
+                const result = await query(`INSERT INTO account_user (id, name_user, username, password) VALUES (null, '${dk_username_user}', '${nameAccount_user}','${dk_password_user}')`);
+                const result_account_user = await query(`SELECT * FROM account_user ORDER BY id DESC LIMIT 1`);
+                const id_user = result_account_user[0].id;
+                const insert_image_default = await query(`INSERT INTO profile_user (id, id_of_user, name_user, avatar, cover_image) VALUES (null, '${id_user}', '${dk_username_user}','/upload1/tenor.gif', '/upload1/default-image.jpg')`);
                     res.json({
                         msg: 'Sign up success'
                     })
-                })
             }
         }
     })
 }
 
 // đăng nhập
-const loginAccountUser = (req, res) => {
-    upload(req, res, (err) => {
+const loginAccountUser = async (req, res) => {
+    upload(req, res, async (err) => {
         const {dn_username_user, dn_password_user} = req.body;
-        const sql0 = `SELECT id FROM account_user WHERE username = '${dn_username_user}' AND password = '${dn_password_user}'`;
-        const sql = `SELECT 1 as v FROM account_user WHERE username = '${dn_username_user}' AND password = '${dn_password_user}'`;
         if (dn_username_user === '' || dn_password_user === '') {
             res.json({
                 msg: 'account error'
             })
         } else {
-            connection.query(sql0, (err, result_id_account) => {
-                connection.query(sql, (err, result) => {
-                    if (result[0] == undefined) {
-                        res.json({
-                            msg: 'account error1'
-                        })
+            const result_id_account = await query(`SELECT id FROM account_user WHERE username = '${dn_username_user}' AND password = '${dn_password_user}'`);
+            const result = await query(`SELECT 1 as v FROM account_user WHERE username = '${dn_username_user}' AND password = '${dn_password_user}'`);
+            const result1 = await query(`SELECT * FROM account_user WHERE username = '${dn_username_user}' AND password = '${dn_password_user}'`);
+
+            if (result[0] == undefined) {
+                res.json({
+                    msg: 'account error1'
+                })
+            }
+            if (result[0] != undefined) {
+                if (result[0].v == 1) {
+                    const id_user = result1[0].id;
+                    const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
+                    if (check_profile[0] == undefined){
+                        res.json({msg: 'login success', rl: result_id_account});
+                    }else {
+                        res.json({msg: 'login success', rl: result_id_account});
                     }
-                    if (result[0] != undefined) {
-                        if (result[0].v == 1) {
-                            res.json({msg: 'login success', rl: result_id_account});
-                        }
-                    }
-                });
-            });
+                }
+            }
         }
     })
 }
@@ -124,7 +130,7 @@ const homeUser = async (req, res) => {
     try {
         const id_user = req.query.id_user;
         const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
-        const result_post = await query(`SELECT * FROM post`);
+        const result_post = await query(`SELECT * FROM post WHERE allowed = 1`);
         const result_comment = await query(`SELECT * FROM comment`);
 
         const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
@@ -188,14 +194,14 @@ const post = async (req, res) => {
                         const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
                         const avatar = result_profile[0].avatar;
 
-                        const post = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Incomplete','${txtaContent}',null ,'${timeFull}','${name}', '${avatar}',null, null, null, null, null,1)`);
+                        const post = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Incomplete','${txtaContent}',null ,'${timeFull}','${name}', '${avatar}',null, null, null, null, null,0)`);
                     } else {
                         // nếu có thì lấy ảnh vào thôi
                         if (check_profile[0].ch == 1) {
                             const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
                             const avatar = result_profile[0].avatar;
 
-                            const post1 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Incomplete','${txtaContent}',null ,'${timeFull}','${name}', '${avatar}',null, null, null, null, null,1)`);
+                            const post1 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Incomplete','${txtaContent}',null ,'${timeFull}','${name}', '${avatar}',null, null, null, null, null,0)`);
                         }
                     }
                 }
@@ -206,14 +212,14 @@ const post = async (req, res) => {
                         const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
                         const avatar = result_profile[0].avatar;
 
-                        const post2 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar,detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Incomplete','${txtaContent}','/upload/${req.file.filename}','${timeFull}','${name}', '${avatar}',null, null, null, null, null,1)`);
+                        const post2 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar,detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Incomplete','${txtaContent}','/upload/${req.file.filename}','${timeFull}','${name}', '${avatar}',null, null, null, null, null,0)`);
                     } else {
                         // nếu có thì lấy ảnh vào thôi
                         if (check_profile[0].ch == 1) {
                             const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
                             const avatar = result_profile[0].avatar;
 
-                            const post3 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar,detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Incomplete','${txtaContent}','/upload/${req.file.filename}','${timeFull}','${name}', '${avatar}',null, null, null, null, null,1)`);
+                            const post3 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar,detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Incomplete','${txtaContent}','/upload/${req.file.filename}','${timeFull}','${name}', '${avatar}',null, null, null, null, null,0)`);
                         }
                     }
                 }
@@ -358,7 +364,7 @@ const pageSearch = async (req, res) => {
     try {
         const {id_user, search} = req.query;
         const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
-        const result_post = await query(`SELECT * FROM post WHERE content LIKE '%${search}%'`);
+        const result_post = await query(`SELECT * FROM post WHERE content LIKE '%${search}%' AND allowed = 1`);
         const result_comment = await query(`SELECT * FROM comment`);
 
         const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
@@ -392,7 +398,8 @@ const pagePostDetail = async (req, res) => {
     try {
         const id_user = req.query.id_user;
         const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
-        res.render('user/pagePostDetail', {id_user, name_user});
+        const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+        res.render('user/pagePostDetail', {id_user, name_user, result_profile});
     } catch (e) {
         console.log(e);
     }
@@ -426,14 +433,14 @@ const postDetail = async (req, res) => {
                     const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
                     const avatar = result_profile[0].avatar;
 
-                    const post_detail = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Complete','${inputContent}',null ,'${timeFull}','${name}', '${avatar}', '${detail_content}', '${inputMaterial}', '${inputMaterialPrice}', '${inputTimeDo}', '${selectLevelDo}',1)`);
+                    const post_detail = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Complete','${inputContent}',null ,'${timeFull}','${name}', '${avatar}', '${detail_content}', '${inputMaterial}', '${inputMaterialPrice}', '${inputTimeDo}', '${selectLevelDo}',0)`);
                 } else {
                     // nếu có thì lấy ảnh vào thôi
                     if (check_profile[0].ch == 1) {
                         const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
                         const avatar = result_profile[0].avatar;
 
-                        const post_detail1 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Complete','${inputContent}',null ,'${timeFull}','${name}', '${avatar}', '${detail_content}', '${inputMaterial}', '${inputMaterialPrice}', '${inputTimeDo}', '${selectLevelDo}',1)`);
+                        const post_detail1 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Complete','${inputContent}',null ,'${timeFull}','${name}', '${avatar}', '${detail_content}', '${inputMaterial}', '${inputMaterialPrice}', '${inputTimeDo}', '${selectLevelDo}',0)`);
                     }
                 }
             }
@@ -444,14 +451,14 @@ const postDetail = async (req, res) => {
                     const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
                     const avatar = result_profile[0].avatar;
 
-                    const post_detail2 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Complete','${inputContent}','/upload/${req.file.filename}' ,'${timeFull}','${name}', '${avatar}', '${detail_content}', '${inputMaterial}', '${inputMaterialPrice}', '${inputTimeDo}', '${selectLevelDo}',1)`);
+                    const post_detail2 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Complete','${inputContent}','/upload/${req.file.filename}' ,'${timeFull}','${name}', '${avatar}', '${detail_content}', '${inputMaterial}', '${inputMaterialPrice}', '${inputTimeDo}', '${selectLevelDo}',0)`);
                 } else {
                     // nếu có thì lấy ảnh vào thôi
                     if (check_profile[0].ch == 1) {
                         const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
                         const avatar = result_profile[0].avatar;
 
-                        const post_detail3 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Complete','${inputContent}','/upload/${req.file.filename}' ,'${timeFull}','${name}', '${avatar}', '${detail_content}', '${inputMaterial}', '${inputMaterialPrice}', '${inputTimeDo}', '${selectLevelDo}',1)`);
+                        const post_detail3 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Complete','${inputContent}','/upload/${req.file.filename}' ,'${timeFull}','${name}', '${avatar}', '${detail_content}', '${inputMaterial}', '${inputMaterialPrice}', '${inputTimeDo}', '${selectLevelDo}',0)`);
                     }
                 }
             }
@@ -467,30 +474,103 @@ const postDetail = async (req, res) => {
 // trang cá nhân
 const pageProfile = async (req, res) => {
     try {
-        const {id_user} = req.query;
-        const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
-        const result_post = await query(`SELECT * FROM post WHERE id_of_user = '${id_user}'`);
-        const result_comment = await query(`SELECT * FROM comment`);
-        const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
+        const {id_user, id_using} = req.query;
+        let distinguish;
+        // nếu là bản thân
+        if (id_user === id_using) {
+            distinguish = 'mySelf';
+            const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
+            const name_user1 = await query(`SELECT name_user FROM account_user WHERE id = '${id_using}'`);
+            const result_post = await query(`SELECT * FROM post WHERE id_of_user = '${id_using}' AND allowed = 1`);
+            const result_comment = await query(`SELECT * FROM comment`);
+            const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_using}'`);
 
-        if (check_profile[0] == undefined) {
-            const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
-            const image_default = result_profile[0].cover_image;
-            const avatar = result_profile[0].avatar;
-
-            const update_avatar0 = await query(`UPDATE post SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-            const update_avatar1 = await query(`UPDATE comment SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-            const update_avatar2 = await query(`UPDATE reply SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-            res.render('user/pageProfile', {name_user, id_user, result_post, result_comment, result_profile});
-        } else {
-            if (check_profile[0].ch == 1) {
+            // chưa set up ảnh đại diện
+            if (check_profile[0] == undefined) {
                 const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                const result_profile1 = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
                 const avatar = result_profile[0].avatar;
-
                 const update_avatar0 = await query(`UPDATE post SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
                 const update_avatar1 = await query(`UPDATE comment SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
                 const update_avatar2 = await query(`UPDATE reply SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-                res.render('user/pageProfile', {name_user, id_user, result_post, result_comment, result_profile});
+                res.render('user/pageProfile', {
+                    name_user, name_user1, id_user, id_using, result_post, result_comment, result_profile,
+                    distinguish, result_profile1
+                });
+            }
+            // đã set up ảnh đại diện
+            else {
+                if (check_profile[0].ch == 1) {
+                    const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                    const result_profile1 = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                    const avatar = result_profile[0].avatar;
+                    const update_avatar0 = await query(`UPDATE post SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
+                    const update_avatar1 = await query(`UPDATE comment SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
+                    const update_avatar2 = await query(`UPDATE reply SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
+                    res.render('user/pageProfile', {
+                        name_user, name_user1, id_user, id_using, result_post, result_comment, result_profile,
+                        distinguish, result_profile1
+                    });
+                }
+            }
+        }
+        // nếu là người khác
+        else {
+            const check_friend = await query(`SELECT 1 AS ch FROM friend WHERE id_of_sender = '${id_user}' AND id_of_recipient = '${id_using}'`);
+            const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
+            const name_user1 = await query(`SELECT name_user FROM account_user WHERE id = '${id_using}'`);
+            const result_post = await query(`SELECT * FROM post WHERE id_of_user = '${id_using}'`);
+            const result_comment = await query(`SELECT * FROM comment`);
+            const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_using}'`);
+            // chưa set up phần ảnh đại diện
+            if (check_profile[0] == undefined) {
+                const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                // chưa gửi lời mời kết bạn
+                if (check_friend[0] == undefined) {
+                    const result_profile1 = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                    distinguish = 'others';
+                    res.render('user/pageProfile', {
+                        name_user, name_user1, id_user, id_using, result_post, result_comment, result_profile,
+                        distinguish, result_profile1
+                    });
+                }
+                // đã gửi lời mời kết bạn
+                else {
+                    if (check_friend[0].ch == 1) {
+                        const result_profile1 = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                        distinguish = 'sending_to_friend';
+                        res.render('user/pageProfile', {
+                            name_user, name_user1, id_user, id_using, result_post, result_comment, result_profile,
+                            distinguish, result_profile1
+                        });
+                    }
+                }
+            }
+            // đã set up phần ảnh đại diện
+            else {
+                if (check_profile[0].ch == 1) {
+                    const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_using}'`);
+                    // chưa gửi lời mời kết bạn
+                    if (check_friend[0] == undefined) {
+                        const result_profile1 = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                        distinguish = 'others';
+                        res.render('user/pageProfile', {
+                            name_user, name_user1, id_user, id_using, result_post, result_comment, result_profile, distinguish,
+                            result_profile1
+                        });
+                    }
+                    // đã gửi lời mời kết bạn
+                    else {
+                        if (check_friend[0].ch == 1) {
+                            const result_profile1 = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                            distinguish = 'sending_to_friend';
+                            res.render('user/pageProfile', {
+                                name_user, name_user1, id_user, id_using, result_post, result_comment, result_profile, distinguish,
+                                result_profile1
+                            });
+                        }
+                    }
+                }
             }
         }
     } catch (e) {
@@ -599,7 +679,52 @@ const countNumberLike = async (req, res) => {
         console.error(e);
     }
 }
+
+// thuật toán add friend
+const sendFriendInvitations = async (req, res) => {
+    try {
+        const {id_sender, id_recipient} = req.query;
+        const check_friend = await query(`SELECT 1 AS ch FROM friend WHERE id_of_sender = '${id_sender}' AND id_of_recipient = '${id_recipient}'`);
+        if (check_friend[0] == undefined) {
+            const send_friend_invitations = await query(`INSERT INTO friend (id, id_of_sender, id_of_recipient, allowed, notification_title) VALUES (null, '${id_sender}', '${id_recipient}', 0, 'add friend')`);
+        } else {
+            if (check_friend[0].ch == 1) {
+                return;
+            }
+        }
+        await res.json({
+            msg: 'ok'
+        })
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+//hủy lời mời kết bạn
+const deleteSendFriendInvitations = async (req, res) => {
+    try {
+        const {id_sender, id_recipient} = req.query;
+        const check_friend = await query(`SELECT 1 AS ch FROM friend WHERE id_of_sender = '${id_sender}' AND id_of_recipient = '${id_recipient}'`);
+        if (check_friend[0] == undefined) {
+            return;
+        } else {
+            if (check_friend[0].ch == 1) {
+                const delete_send_friend_invitations = await query(`DELETE FROM friend WHERE id_of_sender ='${id_sender}' AND id_of_recipient = '${id_recipient}'`);
+            }
+        }
+        await res.json({
+            msg: 'ok'
+        })
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+
+
+
 module.exports = {
     startApp, homeUser, registerAccountUser, loginAccountUser, post, comment, loadComment, replyComment, deleteComment,
-    pageSearch, pagePostDetail, postDetail, pageProfile, editCoverImage, editAvatar, numberLike, countNumberLike
+    pageSearch, pagePostDetail, postDetail, pageProfile, editCoverImage, editAvatar, numberLike, countNumberLike,
+    sendFriendInvitations, deleteSendFriendInvitations
 }

@@ -204,7 +204,7 @@
     <!--    navbar 1-->
     <div class="topbar stick">
         <div class="logo">
-            <a href="/user/homeUser?id_user=<%= id_user %>"><img src="/images/logo.png" alt=""></a>
+            <a href="/user/homeUser?id_user=<%= id_user %>"><img style="width: 72px" src="/images/logo.png" alt=""></a>
         </div>
 
         <div class="top-area">
@@ -356,7 +356,7 @@
                 </li>
             </ul>
             <div class="user-img">
-                <img class="w-25" style="border: 1px solid #444444" src="/images/tenor.gif">
+                <img style="border: 1px solid #444444; width: 55px" src="<%= result_profile[0].avatar%>">
                 <span class="status f-online"></span>
                 <%= name_user[0].name_user %>
                 <div class="user-setting">
@@ -520,21 +520,7 @@
                             <div class="logo">
                                 <a href="index-2.html" title=""><img src="/images/logo.png" alt=""></a>
                             </div>
-                            <p>
-                                The trio took this simple idea and built it into the world’s leading carpooling
-                                platform.
-                            </p>
                         </div>
-                        <ul class="location">
-                            <li>
-                                <i class="ti-map-alt"></i>
-                                <p>33 new montgomery st.750 san francisco, CA USA 94105.</p>
-                            </li>
-                            <li>
-                                <i class="ti-mobile"></i>
-                                <p>+1-56-346 345</p>
-                            </li>
-                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4">
@@ -693,8 +679,8 @@
         editor = await ClassicEditor
             .create(document.getElementById("ckeditor"), {
                 cloudServices: {
-                    uploadUrl: "https://76763.cke-cs.com/easyimage/upload/",
-                    tokenUrl: "https://76763.cke-cs.com/token/dev/f0560f93197e924b7c2fe504e5b47712ccb702b4cefdf96d1d0ed0ca1be1"
+                    uploadUrl: "https://77690.cke-cs.com/easyimage/upload/",
+                    tokenUrl: "https://77690.cke-cs.com/token/dev/299db3168dcf81c62a3c179bee8ca8ff26f9abc8122d3d1a48edc3cd6d94"
                 }
             });
     }

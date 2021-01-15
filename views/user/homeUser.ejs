@@ -204,7 +204,7 @@
     <!--    navbar 1-->
     <div class="topbar stick">
         <div class="logo">
-            <a title="" href="/user/homeUser?id_user=<%= id_user %>"><img src="/images/logo.png" alt=""></a>
+            <a href="/user/homeUser?id_user=<%= id_user %>"><img style="width: 75px" src="/images/logo.png" alt=""></a>
         </div>
 
         <div class="top-area">
@@ -395,7 +395,7 @@
                                             </li>
                                             <li>
                                                 <i class="ti-files"></i>
-                                                <a href="/user/pageProfile?id_user=<%= id_user %>">Trang của tôi</a>
+                                                <a href="/user/pageProfile?id_user=<%= id_user %>&id_using=<%= id_user%>">Trang của tôi</a>
                                             </li>
                                             <li>
                                                 <i class="ti-user"></i>
@@ -549,7 +549,7 @@
                                                     </figure>
                                                     <div class="friend-name">
                                                         <ins>
-                                                            <a href="/user/pageProfile?id_user=<%= data_post.id_of_user %>"
+                                                            <a href="/user/pageProfile?id_user=<%= id_user %>&id_using=<%= data_post.id_of_user%>"
                                                                title=""><%= data_post.name_user %></a></ins>
                                                         <span>Đã đăng lúc: <%= data_post.date_posted %></span>
                                                     </div>
@@ -584,7 +584,7 @@
                                                                         <ins id="appendNumberUnLike<%= data_post.id %>"><%= data_post.number_like %></ins>
                                                                         <input id="inputAppendNumberUnLike<%= data_post.id %>"
                                                                                type="number"
-                                                                               value=""
+                                                                               value="<%= data_post.number_like%>"
                                                                                hidden>
                                                                     </span>
                                                                 </li>
@@ -888,23 +888,9 @@
                     <div class="widget">
                         <div class="foot-logo">
                             <div class="logo">
-                                <a href="index-2.html" title=""><img src="/images/logo.png" alt=""></a>
+                                <a href="index-2.html" title=""><img  src="/images/logo.png" alt=""></a>
                             </div>
-                            <p>
-                                The trio took this simple idea and built it into the world’s leading carpooling
-                                platform.
-                            </p>
                         </div>
-                        <ul class="location">
-                            <li>
-                                <i class="ti-map-alt"></i>
-                                <p>33 new montgomery st.750 san francisco, CA USA 94105.</p>
-                            </li>
-                            <li>
-                                <i class="ti-mobile"></i>
-                                <p>+1-56-346 345</p>
-                            </li>
-                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4">
@@ -1101,7 +1087,6 @@
         try {
             const result = await axios.get(`/loadComment?id_user=<%= id_user %>`);
             const body = result.data;
-            let id_comment = 0;
             // phần bình luận
             Array.from(document.getElementById("divBiggest").children).forEach((divBigger) => {
                 Array.from(divBigger.children).forEach((divBig) => {
@@ -1162,7 +1147,7 @@
                         })
                     })
                 })
-            })
+            });
 
             // dùng để active nút like
             Array.from(document.getElementById("divBiggest").children).forEach((divBigger) => {
@@ -1174,15 +1159,17 @@
                             const likes = body.result_like.filter((like) => {
                                 return like.id_of_post == data.id;
                             });
-                            let html = '';
                             likes.forEach((data1) => {
                                 data.querySelector("#iconLike" + data1.id_of_post).style.display = "none";
                                 data.querySelector("#iconUnLike" + data1.id_of_post).style.display = "block";
-                            })
+                            });
+
                         })
                     })
                 })
-            })
+            });
+
+
         } catch (e) {
             console.error(e);
         }
@@ -1335,18 +1322,19 @@
     // nút hủy like
     const btnUnLike = async (id_post) => {
         try {
-            const old_number = document.getElementById("inputAppendNumberUnLike" + id_post).value;
+            const old_number = document.querySelector("#inputAppendNumberUnLike" + id_post).value;
             document.getElementById("iconLike" + id_post).style.display = "block";
             document.getElementById("iconUnLike" + id_post).style.display = "none";
             const result1 = await axios.post(`/numberLike?id_user=<%= id_user %>&id_post=${id_post}`);
             const body1 = result1.data;
+            let number_like
             if (body1.msg === 'ok') {
-                const number_like = parseInt(old_number) - 1;
+                number_like = parseInt(old_number) - 1;
                 let html = '';
-
                 html += '<font>' + number_like + '</font>';
-                document.getElementById("appendNumberUnLike" + id_post).innerHTML = html;
+                document.getElementById("appendNumberLike" + id_post).innerHTML = html;
             }
+            document.querySelector("#inputAppendNumberLike" + id_post).value = number_like;
         } catch (e) {
             console.error(e);
         }

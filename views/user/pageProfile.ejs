@@ -204,7 +204,7 @@
     <!--    navbar 1-->
     <div class="topbar stick">
         <div class="logo">
-            <a href="/user/homeUser?id_user=<%= id_user %>"><img src="/images/logo.png" alt=""></a>
+            <a href="/user/homeUser?id_user=<%= id_user %>"><img style="width: 72px;" src="/images/logo.png" alt=""></a>
         </div>
 
         <div class="top-area">
@@ -221,62 +221,17 @@
                         <i class="ti-bell"></i><span>20</span>
                     </a>
                     <div class="dropdowns">
-                        <span>4 New Notifications</span>
+                        <span>4 Thông báo mới</span>
                         <ul class="drops-menu">
-                            <li>
-                                <a href="" title="">
-                                    <img src="/images/resources/thumb-1.jpg" alt="">
-                                    <div class="mesg-meta">
-                                        <h6>sarah Loren</h6>
-                                        <span>Hi, how r u dear ...?</span>
-                                        <i>2 min ago</i>
-                                    </div>
-                                </a>
-                                <span class="tag green">New</span>
-                            </li>
-                            <li>
-                                <a href="" title="">
-                                    <img src="/images/resources/thumb-2.jpg" alt="">
-                                    <div class="mesg-meta">
-                                        <h6>Jhon doe</h6>
-                                        <span>Hi, how r u dear ...?</span>
-                                        <i>2 min ago</i>
-                                    </div>
-                                </a>
-                                <span class="tag red">Reply</span>
-                            </li>
                             <li>
                                 <a href="" title="">
                                     <img src="/images/resources/thumb-3.jpg" alt="">
                                     <div class="mesg-meta">
                                         <h6>Andrew</h6>
-                                        <span>Hi, how r u dear ...?</span>
                                         <i>2 min ago</i>
                                     </div>
                                 </a>
-                                <span class="tag blue">Unseen</span>
-                            </li>
-                            <li>
-                                <a href="" title="">
-                                    <img src="/images/resources/thumb-4.jpg" alt="">
-                                    <div class="mesg-meta">
-                                        <h6>Tom cruse</h6>
-                                        <span>Hi, how r u dear ...?</span>
-                                        <i>2 min ago</i>
-                                    </div>
-                                </a>
-                                <span class="tag">New</span>
-                            </li>
-                            <li>
-                                <a href="" title="">
-                                    <img src="/images/resources/thumb-5.jpg" alt="">
-                                    <div class="mesg-meta">
-                                        <h6>Amy</h6>
-                                        <span>Hi, how r u dear ...?</span>
-                                        <i>2 min ago</i>
-                                    </div>
-                                </a>
-                                <span class="tag">New</span>
+                                <span class="tag blue">Gửi lời mời kết bạn</span>
                             </li>
                         </ul>
                         <a href="" title="" class="more-mesg">view more</a>
@@ -356,7 +311,7 @@
                 </li>
             </ul>
             <div class="user-img">
-                <img style="border: 1px solid #444444; width: 55px" src="<%= result_profile[0].avatar %>">
+                <img style="border: 1px solid #444444; width: 55px" src="<%= result_profile1[0].avatar %>">
                 <span class="status f-online"></span>
                 <%= name_user[0].name_user %>
                 <div class="user-setting">
@@ -374,7 +329,7 @@
 
     <section>
         <div class="feature-photo">
-            <figure><img id="divEditCoverImage" style="height: 535px" src="<%= result_profile[0].cover_image %>">
+            <figure><img id="divEditCoverImage" style="height: 600px" src="<%= result_profile[0].cover_image %>">
             </figure>
             <div class="add-btn">
                 <span>1.3k followers</span>
@@ -386,7 +341,22 @@
                     Chỉnh sửa
                     <input type="file" id="coverImage" accept="image/*"/>
                 </label>
-
+            </div>
+            <!-- nút kết bạn-->
+            <div class="edit-phto bg-primary" type="button" onclick="btnAddFriend(<%= id_using %>)"
+                 id="divBtnAddFriend">
+                <i class="fas fa-plus"></i>
+                <label class="fileContainer" type="button" onclick="btnAddFriend(<%= id_using %>)">
+                    Kết bạn
+                </label>
+            </div>
+            <!-- hủy lời kết bạn-->
+            <div class="edit-phto bg-primary" type="button" onclick="btnUnFriend(<%= id_using %>)" id="divBtnUnFriend"
+                 style="display: none">
+                <i><img src="/images/unfollow (1).png"></i>
+                <label class="fileContainer" type="button" onclick="btnUnFriend(<%= id_using %>)">
+                    Hủy kết bạn
+                </label>
             </div>
             <div id="divBtnEditCoverImage1" style="display: none; position: absolute; top: 443px; left: 480px">
                 <button type="button" class="btn btn-success" onclick="submitCoverImage()">
@@ -462,8 +432,8 @@
                         <div class="timeline-info">
                             <ul>
                                 <li class="admin-name">
-                                    <h5><%= name_user[0].name_user %></h5>
-                                    <span>@<%= name_user[0].name_user %></span>
+                                    <h5><%= name_user1[0].name_user %></h5>
+                                    <span>@<%= name_user1[0].name_user %></span>
                                 </li>
                                 <li>
                                     <a class="active" href="" title="" data-ripple="">Bài viết</a>
@@ -535,7 +505,8 @@
                                 <div class="central-meta">
                                     <div class="new-postbox">
                                         <figure>
-                                            <img style="border: 1px solid #444444" src="<%= result_profile[0].avatar%>">
+                                            <img style="border: 1px solid #444444"
+                                                 src="<%= result_profile1[0].avatar %>">
                                         </figure>
                                         <div class="newpst-input">
                                                 <textarea rows="3" placeholder="viết gì đó"
@@ -621,7 +592,8 @@
                                             <div class="user-post">
                                                 <div class="friend-info">
                                                     <figure>
-                                                        <img style="border: 1px solid #444444" src="<%= data_post.avatar%>"
+                                                        <img style="border: 1px solid #444444"
+                                                             src="<%= data_post.avatar %>"
                                                              alt="">
                                                     </figure>
                                                     <div class="friend-name">
@@ -1000,21 +972,7 @@
                             <div class="logo">
                                 <a href="index-2.html" title=""><img src="/images/logo.png" alt=""></a>
                             </div>
-                            <p>
-                                The trio took this simple idea and built it into the world’s leading carpooling
-                                platform.
-                            </p>
                         </div>
-                        <ul class="location">
-                            <li>
-                                <i class="ti-map-alt"></i>
-                                <p>33 new montgomery st.750 san francisco, CA USA 94105.</p>
-                            </li>
-                            <li>
-                                <i class="ti-mobile"></i>
-                                <p>+1-56-346 345</p>
-                            </li>
-                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4">
@@ -1293,6 +1251,24 @@
                     })
                 })
             })
+
+            let distinguish = "<%= distinguish %>";
+            if (distinguish === 'mySelf') {
+                document.getElementById("divBtnAddFriend").style.display = "none";
+            }
+            if (distinguish === "others") {
+                document.getElementById("divBtnEditCoverImage").style.display = "none";
+                // document.getElementById("divBtnAddFriend").style.display = "none";
+                // document.getElementById("divBtnEditCoverImage").style.display = "none";
+                // document.getElementById("divBtnUnFriend").style.display = "block";
+            }
+
+
+            if (distinguish === 'sending_to_friend') {
+                document.getElementById("divBtnAddFriend").style.display = "none";
+                document.getElementById("divBtnEditCoverImage").style.display = "none";
+                document.getElementById("divBtnUnFriend").style.display = "block";
+            }
         } catch (e) {
             console.error(e);
         }
@@ -1420,6 +1396,7 @@
     }
 </script>
 
+<!--phần like-->
 <script>
     // nút kích hoạt like
     const btnLike = async (id_post) => {
@@ -1445,18 +1422,19 @@
     // nút hủy like
     const btnUnLike = async (id_post) => {
         try {
-            const old_number = document.getElementById("inputAppendNumberUnLike" + id_post).value;
+            const old_number = document.querySelector("#inputAppendNumberUnLike" + id_post).value;
             document.getElementById("iconLike" + id_post).style.display = "block";
             document.getElementById("iconUnLike" + id_post).style.display = "none";
             const result1 = await axios.post(`/numberLike?id_user=<%= id_user %>&id_post=${id_post}`);
             const body1 = result1.data;
+            let number_like
             if (body1.msg === 'ok') {
-                const number_like = parseInt(old_number) - 1;
+                number_like = parseInt(old_number) - 1;
                 let html = '';
-
                 html += '<font>' + number_like + '</font>';
-                document.getElementById("appendNumberUnLike" + id_post).innerHTML = html;
+                document.getElementById("appendNumberLike" + id_post).innerHTML = html;
             }
+            document.querySelector("#inputAppendNumberLike" + id_post).value = number_like;
         } catch (e) {
             console.error(e);
         }
@@ -1542,5 +1520,30 @@
     }
 </script>
 
+<!--kết bạn-->
+<script>
+    const btnAddFriend = async (id_using) => {
+        try {
+            const result = await axios.get(`/sendFriendInvitations?id_sender=<%= id_user %>&id_recipient=${id_using}`);
+            const body = result.data;
+            if (body.msg === 'ok') {
+                window.open(`/user/pageProfile?id_user=<%= id_user %>&id_using=<%= id_using %>`, `_self`);
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
+    const btnUnFriend = async (id_using) => {
+        try {
+            const result = await axios.get(`/deleteSendFriendInvitations?id_sender=<%= id_user %>&id_recipient=${id_using}`);
+            const body = result.data;
+            if (body.msg === 'ok') {
+                window.open(`/user/pageProfile?id_user=<%= id_user %>&id_using=<%= id_using %>`, `_self`);
+            }
+        }catch (e) {
+            console.error(e);
+        }
+    }
+</script>
 </body>
 </html>
