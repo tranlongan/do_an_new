@@ -19,503 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52d36193-aa7f-40b4-b9b2-56b78ceb73ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controller/controller_admin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/unfollow (1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/css/datepicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/css/datepicker.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/datepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/datepicker.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.cs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.da.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.de.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.es.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.fi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.fr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.hu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.nl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.pl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.pt-BR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.pt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.ro.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.sk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/air-datepicker/dist/js/i18n/datepicker.zh.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/apexcharts/apexcharts.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/apexcharts/apexcharts.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/bootstrap-select.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/bootstrap-select.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/bootstrap-select.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/bootstrap-select.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/css/bootstrap-select.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/css/bootstrap-select.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/css/bootstrap-select.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/bootstrap-select.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/bootstrap-select.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/bootstrap-select.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/bootstrap-select.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-am_ET.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-am_ET.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-am_ET.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ar_AR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ar_AR.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ar_AR.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-bg_BG.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-bg_BG.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-bg_BG.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-cs_CZ.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-cs_CZ.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-cs_CZ.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-da_DK.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-da_DK.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-da_DK.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-de_DE.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-de_DE.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-de_DE.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-en_US.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-en_US.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-en_US.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-es_CL.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-es_CL.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-es_CL.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-es_ES.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-es_ES.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-es_ES.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-et_EE.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-et_EE.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-et_EE.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-eu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-eu.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-eu.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-fa_IR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-fa_IR.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-fa_IR.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-fi_FI.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-fi_FI.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-fi_FI.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-fr_FR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-fr_FR.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-fr_FR.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-hr_HR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-hr_HR.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-hr_HR.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-hu_HU.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-hu_HU.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-hu_HU.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-id_ID.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-id_ID.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-id_ID.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-it_IT.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-it_IT.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-it_IT.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ja_JP.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ja_JP.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ja_JP.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-kh_KM.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-kh_KM.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-kh_KM.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ko_KR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ko_KR.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ko_KR.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-lt_LT.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-lt_LT.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-lt_LT.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-lv_LV.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-lv_LV.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-lv_LV.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-nb_NO.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-nb_NO.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-nb_NO.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-nl_NL.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-nl_NL.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-nl_NL.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-pl_PL.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-pl_PL.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-pl_PL.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-pt_BR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-pt_BR.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-pt_BR.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-pt_PT.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-pt_PT.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-pt_PT.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ro_RO.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ro_RO.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ro_RO.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ru_RU.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ru_RU.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ru_RU.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-sk_SK.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-sk_SK.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-sk_SK.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-sl_SI.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-sl_SI.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-sl_SI.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-sv_SE.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-sv_SE.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-sv_SE.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-tr_TR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-tr_TR.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-tr_TR.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ua_UA.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ua_UA.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-ua_UA.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-vi_VN.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-vi_VN.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-vi_VN.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-zh_CN.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-zh_CN.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-zh_CN.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-zh_TW.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-zh_TW.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/dist/js/i18n/defaults-zh_TW.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/.jshintrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/bootstrap-select.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-ar_AR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-bg_BG.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-cro_CRO.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-cs_CZ.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-da_DK.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-de_DE.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-en_US.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-es_CL.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-es_ES.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-et_EE.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-eu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-fa_IR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-fi_FI.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-fr_FR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-hu_HU.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-id_ID.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-it_IT.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-ja_JP.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-kh_KM.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-ko_KR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-lt_LT.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-nb_NO.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-nl_NL.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-pl_PL.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-pt_BR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-pt_PT.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-ro_RO.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-ru_RU.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-sk_SK.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-sl_SI.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-sv_SE.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-tr_TR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-ua_UA.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-vi_VN.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-zh_CN.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/js/i18n/defaults-zh_TW.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-select/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-wysihtml5-master/bootstrap-wysihtml5.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap-wysihtml5-master/bootstrap-wysihtml5.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/bootstrap/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/cropperjs/dist/cropper-init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/cropperjs/dist/cropper.common.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/cropperjs/dist/cropper.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/cropperjs/dist/cropper.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/cropperjs/dist/cropper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/cropperjs/dist/cropper.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/cropperjs/dist/cropper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/css/dataTables.bootstrap4.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/css/jquery.dataTables.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/css/responsive.bootstrap4.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/css/responsive.dataTables.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/images/sort_asc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/images/sort_asc_disabled.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/images/sort_both.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/images/sort_desc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/images/sort_desc_disabled.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/js/buttons.bootstrap4.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/js/buttons.flash.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/js/buttons.html5.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/js/buttons.print.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/js/dataTables.bootstrap4.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/js/dataTables.buttons.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/js/dataTables.responsive.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/js/jquery.dataTables.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/js/jszip.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/js/pdfmake.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/js/responsive.bootstrap4.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/datatables/js/vfs_fonts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/dropzone/src/basic.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/dropzone/src/dropzone.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/dropzone/src/dropzone.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/dropzone/src/dropzone.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/fancybox/dist/jquery.fancybox.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/fancybox/dist/jquery.fancybox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/fancybox/dist/jquery.fancybox.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/fancybox/dist/jquery.fancybox.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/fullcalendar/fullcalendar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/fullcalendar/fullcalendar.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/highcharts-6.0.7/code/highcharts-3d.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/highcharts-6.0.7/code/highcharts-3d.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/highcharts-6.0.7/code/highcharts-3d.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/highcharts-6.0.7/code/highcharts-more.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/highcharts-6.0.7/code/highcharts-more.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/highcharts-6.0.7/code/highcharts-more.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/highcharts-6.0.7/code/highcharts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/highcharts-6.0.7/code/highcharts.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/highcharts-6.0.7/code/highcharts.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/highlight.js/src/highlight.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/highlight.js/src/highlight.pack.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/highlight.js/src/styles/solarized-dark.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/ion-rangeslider/css/ion.rangeSlider.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/ion-rangeslider/js/ion.rangeSlider.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jQuery-Knob-master/jquery.knob.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jquery-asColor/dist/jquery-asColor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jquery-asColorPicker/dist/css/asColorPicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jquery-asColorPicker/dist/images/alpha.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jquery-asColorPicker/dist/images/hue.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jquery-asColorPicker/dist/images/saturation.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jquery-asColorPicker/dist/images/transparent.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jquery-asColorPicker/jquery-asColorPicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jquery-asGradient/dist/jquery-asGradient.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jquery-steps/jquery.steps.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jquery-steps/jquery.steps.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jvectormap/jquery-jvectormap-2.0.3.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jvectormap/jquery-jvectormap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/jvectormap/jquery-jvectormap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.concat.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/malihu-custom-scrollbar-plugin-master/jquery.mousewheel.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/plyr/dist/plyr.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/plyr/dist/plyr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/plyr/dist/plyr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/css/select2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/css/select2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/af.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/ar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/az.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/bg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/bs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/ca.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/cs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/da.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/de.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/dsb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/el.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/es.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/et.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/eu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/fa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/fi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/fr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/gl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/he.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/hi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/hr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/hsb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/hu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/hy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/id.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/is.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/it.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/ja.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/km.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/ko.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/lt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/lv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/mk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/ms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/nb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/nl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/pl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/ps.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/pt-BR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/pt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/ro.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/ru.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/sk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/sl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/sr-Cyrl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/sr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/sv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/th.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/tk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/tr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/uk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/vi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/zh-CN.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/i18n/zh-TW.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/select2.full.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/select2.full.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/select2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/select2/dist/js/select2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/slick/slick.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/slick/slick.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/sweetalert2/sweet-alert.init.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/sweetalert2/sweetalert2.all.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/sweetalert2/sweetalert2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/switchery/switchery.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/switchery/switchery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/timedropper/timedropper.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/timedropper/timedropper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/timedropper/timedropper.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/timedropper/timedropper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/src/plugins/wysihtml5-master/dist/wysihtml5-0.3.0.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/FontAwesome.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/dropways.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/dropways.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/dropways.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/dropways.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/dropways.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/font-awesome/css/font-awesome.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/font-awesome/css/font-awesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/fontawesome-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/foundation-icons.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/foundation-icons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/foundation-icons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/foundation-icons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/foundation-icons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/ionicons-master/css/ionicons.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/ionicons-master/css/ionicons.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/ionicons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/ionicons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/ionicons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/ionicons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/themify-icons/themify-icons.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/themify.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/themify.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/themify.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/fonts/themify.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/apple-touch-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/banner-img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/briefcase.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/cancel.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/caution-sign.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/chat-img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/chat-img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/check-mark-green.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/check-mark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/chrome.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/coming-soon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/cross.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/demo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/deskapp-logo-white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/deskapp-logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/edge.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/favicon-16x16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/favicon-32x32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/firefox.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/forgot-password.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/github.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/icon-Cash.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/icon-debit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/icon-online-wallet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/img.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/img3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/img4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/img5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/internet-explorer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/layout/header-dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/layout/header-white.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/layout/sidebar-dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/layout/sidebar-white.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/login-page-img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/logo-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/medicine-bro.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/menu-icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/modal-img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/modal-img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/modal-img3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/new-loader.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/opera.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/page-icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/paper-map-cuate.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/person.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/photo1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/photo2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/photo3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/photo4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/photo5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/photo6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/photo7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/photo8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/photo9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/plyr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/product-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/product-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/product-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/product-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/product-5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/product-img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/product-img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/product-img3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/product-img4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/profile-photo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/register-page-img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/remedy-amico.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/safari.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/success.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/tick.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/upgrade.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/upload-file-img.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/images/wave.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/advanced-components.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/apexcharts-setting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/calendar-setting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/colorpicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/core.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/core.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/dashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/dashboard2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/dashboard3.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/datatable-setting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/highchart-setting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/jvectormap-setting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/knob-chart-setting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/layout-settings.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/process.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/range-slider-setting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/script.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/scripts/steps-setting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/styles/core.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/styles/core.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/styles/icon-font.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/styles/icon-font.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/styles/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendors/styles/style.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/router_admin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/homeAdmin.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/pageManagementUser.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/pageProfile.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/pageViewBlogDetail.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/pageViewBlogs.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/pageViewBlogsActive.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/login_admin.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/controller_user.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/controller_user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/router_user.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/router_user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login_user.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/login_user.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user/homeUser.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/homeUser.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user/pagePostDetail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/pagePostDetail.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user/pageProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/pageProfile.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user/pageSearch.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/pageSearch.ejs" afterDir="false" />
-    </list>
+    <list default="true" id="52d36193-aa7f-40b4-b9b2-56b78ceb73ea" name="Default Changelist" comment="08112021" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -536,29 +40,33 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1llxpaytvyDJRADw3kPlxlQoyu1" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="12.18.0" />
-    <property name="javascript.nodejs.core.library.typings.version" value="12.19.9" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../do_an" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.16.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="14.17.32" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/user" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\IDM file download\Compressed\do_an_new-master\do_an_new-master\views\user" />
       <recent name="D:\Web\do_an_new\public\images" />
       <recent name="D:\Web\do_an_new\public\src" />
       <recent name="D:\Web\do_an_new\public" />
       <recent name="D:\Web\do_an_new\public\upload1" />
-      <recent name="D:\Web\do_an_new\public\upload" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Web\do_an_new\views\user" />
@@ -609,7 +117,34 @@
       <workItem from="1609570114946" duration="869000" />
       <workItem from="1610345990060" duration="248000" />
       <workItem from="1610589153541" duration="11416000" />
+      <workItem from="1636270635874" duration="16548000" />
+      <workItem from="1636290966346" duration="64000" />
+      <workItem from="1636293210126" duration="503000" />
+      <workItem from="1636331843158" duration="3751000" />
+      <workItem from="1636350823491" duration="176000" />
+      <workItem from="1636352554733" duration="19000" />
+      <workItem from="1636354473810" duration="1822000" />
+      <workItem from="1636895322559" duration="4000" />
+      <workItem from="1637206443694" duration="1987000" />
+      <workItem from="1638349381218" duration="372000" />
+      <workItem from="1638525646649" duration="29000" />
+      <workItem from="1640439465179" duration="43000" />
+      <workItem from="1640585423483" duration="281000" />
+      <workItem from="1640662168643" duration="1139000" />
+      <workItem from="1640836014685" duration="7262000" />
+      <workItem from="1642226713062" duration="14175000" />
+      <workItem from="1642735517937" duration="457000" />
+      <workItem from="1642824529797" duration="11355000" />
+      <workItem from="1642846245313" duration="693000" />
     </task>
+    <task id="LOCAL-00001" summary="08112021">
+      <created>1642846287519</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1642846287520</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -627,50 +162,9 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608186040105">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1608186040105" />
-    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608185749491">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608185749491" />
-    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1610595440187">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1610595440187" />
-    <state x="645" y="310" key="Github.ShareDialog" timestamp="1608613208337">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="645" y="310" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1608613208337" />
-    <state x="570" y="110" key="Github.UntrackedFilesDialog" timestamp="1608613230338">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="570" y="110" key="Github.UntrackedFilesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608613230338" />
-    <state width="1493" height="195" key="GridCell.Tab.0.bottom" timestamp="1610603899180">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="195" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610603899180" />
-    <state width="1493" height="195" key="GridCell.Tab.0.center" timestamp="1610603899180">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="195" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610603899180" />
-    <state width="1493" height="195" key="GridCell.Tab.0.left" timestamp="1610603899180">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="195" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610603899180" />
-    <state width="1493" height="195" key="GridCell.Tab.0.right" timestamp="1610603899180">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="195" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610603899180" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1608715002673">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1608715002673" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1610594237893">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1610594237893" />
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="08112021" />
+    <option name="LAST_COMMIT_MESSAGE" value="08112021" />
   </component>
 </project>

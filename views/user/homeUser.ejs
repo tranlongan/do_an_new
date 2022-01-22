@@ -41,7 +41,6 @@
         </div>
         <nav id="menu" class="res-menu">
             <ul>
-                <li><span>Trang chủ</span></li>
                 <li><span>Time Line</span>
                     <ul>
                         <li><a href="time-line.html" title="">timeline</a></li>
@@ -209,7 +208,6 @@
 
         <div class="top-area">
             <ul class="nav float-left pt-2 mt-1">
-                <li class="nav-item"><a class="nav-link" href=""><i class="ti-home"></i> Trang chủ</a></li>
                 <li class="nav-item ml-5">
                     <input class="form-control" type="text" id="inputSearch" placeholder="Tìm kiếm..."
                            onkeypress="enterSearch(event)">
@@ -395,11 +393,13 @@
                                             </li>
                                             <li>
                                                 <i class="ti-files"></i>
-                                                <a href="/user/pageProfile?id_user=<%= id_user %>&id_using=<%= id_user%>">Trang của tôi</a>
+                                                <a href="/user/pageProfile?id_user=<%= id_user %>&id_using=<%= id_user %>">Trang
+                                                    của tôi</a>
                                             </li>
                                             <li>
                                                 <i class="ti-user"></i>
-                                                <a href="" title="">Bạn bè</a>
+                                                <a href="/pageFriendsUser?id_user=<%= id_user %>&id_using=<%= id_user %>"
+                                                   title="">Bạn bè</a>
                                             </li>
                                             <li>
                                                 <i class="ti-share"></i>
@@ -520,6 +520,8 @@
                                                             </div>
                                                             <input type="file" id="file_image" accept="image/*"
                                                                    hidden/>
+                                                            <img style="display: block; margin-left: auto; margin-right: auto"
+                                                                 src="" id="imgAvatar">
                                                             <a class="form-control mb-2"
                                                                href="/user/pagePostDetail?id_user=<%= id_user %>">
                                                                 Viết bài hoàn chỉnh</a>
@@ -549,7 +551,7 @@
                                                     </figure>
                                                     <div class="friend-name">
                                                         <ins>
-                                                            <a href="/user/pageProfile?id_user=<%= id_user %>&id_using=<%= data_post.id_of_user%>"
+                                                            <a href="/user/pageProfile?id_user=<%= id_user %>&id_using=<%= data_post.id_of_user %>"
                                                                title=""><%= data_post.name_user %></a></ins>
                                                         <span>Đã đăng lúc: <%= data_post.date_posted %></span>
                                                     </div>
@@ -584,7 +586,7 @@
                                                                         <ins id="appendNumberUnLike<%= data_post.id %>"><%= data_post.number_like %></ins>
                                                                         <input id="inputAppendNumberUnLike<%= data_post.id %>"
                                                                                type="number"
-                                                                               value="<%= data_post.number_like%>"
+                                                                               value="<%= data_post.number_like %>"
                                                                                hidden>
                                                                     </span>
                                                                 </li>
@@ -888,7 +890,7 @@
                     <div class="widget">
                         <div class="foot-logo">
                             <div class="logo">
-                                <a href="index-2.html" title=""><img  src="/images/logo.png" alt=""></a>
+                                <a href="index-2.html" title=""><img src="/images/logo.png" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -1035,6 +1037,22 @@
 
 <!--đăng bài-->
 <script>
+    document.querySelector("#file_image").onchange = (evt) => {
+        evt.stopPropagation();
+        evt.preventDefault();
+
+        const files = evt.target.files;
+        file = files[0];
+        console.log(file);
+
+        const fileReader = new FileReader();
+        fileReader.onload = function (progressEvent) {
+            const url = fileReader.result;
+            const myImg = document.getElementById("imgAvatar");
+            myImg.src = url;
+        }
+        fileReader.readAsDataURL(file);
+    };
     const btnPost = async () => {
         let file;
         document.querySelector("#file_image").onchange = (evt) => {
@@ -1065,6 +1083,7 @@
             console.error(e);
         }
     }
+
 </script>
 
 <!--tất cả phần bình luận nằm ở đây-->

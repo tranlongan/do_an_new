@@ -40,6 +40,8 @@ router.get(`/countNumberLike`, controller.countNumberLike);
 router.get(`/sendFriendInvitations`, controller.sendFriendInvitations);
 // hủy lời mời
 router.get(`/deleteSendFriendInvitations`, controller.deleteSendFriendInvitations);
-
-
+// xác nhận lời mời
+router.get(`/acceptFriendInvitations`, controller.acceptFriendInvitations);
+// trang bạn bè
+router.get(`/pageFriendsUser`, controller.pageFriendsUser);
 module.exports = router;

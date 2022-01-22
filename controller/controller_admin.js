@@ -37,6 +37,7 @@ function checkFileType(file, cb) {
 const pageLoginAdmin = async (req, res)=>{
     try {
         res.render('login_admin');
+
     }catch (e) {
         console.error(e);
     }

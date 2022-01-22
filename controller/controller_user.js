@@ -2,6 +2,7 @@ const connection = require('../db.js');
 const multer = require('multer');
 const path = require('path');
 const util = require('util');
+const fs = require('fs');
 const query = util.promisify(connection.query).bind(connection);
 
 // *******************************************************************************************************************
@@ -62,6 +63,7 @@ function checkFileType1(file1, cb1) {
 
 // *******************************************************************************************************************
 const startApp = (req, res) => {
+    const testFolder = '../public/upload';
     res.render('login_user');
 }
 
@@ -80,13 +82,19 @@ const registerAccountUser = async (req, res) => {
                     msg: 'The two passwords are not the same'
                 })
             } else {
-                const result = await query(`INSERT INTO account_user (id, name_user, username, password) VALUES (null, '${dk_username_user}', '${nameAccount_user}','${dk_password_user}')`);
-                const result_account_user = await query(`SELECT * FROM account_user ORDER BY id DESC LIMIT 1`);
+                const result = await query(`INSERT INTO account_user (id, name_user, username, password)
+                                            VALUES (null, '${dk_username_user}', '${nameAccount_user}',
+                                                    '${dk_password_user}')`);
+                const result_account_user = await query(`SELECT *
+                                                         FROM account_user
+                                                         ORDER BY id DESC LIMIT 1`);
                 const id_user = result_account_user[0].id;
-                const insert_image_default = await query(`INSERT INTO profile_user (id, id_of_user, name_user, avatar, cover_image) VALUES (null, '${id_user}', '${dk_username_user}','/upload1/tenor.gif', '/upload1/default-image.jpg')`);
-                    res.json({
-                        msg: 'Sign up success'
-                    })
+                const insert_image_default = await query(`INSERT INTO profile_user (id, id_of_user, name_user, avatar, cover_image)
+                                                          VALUES (null, '${id_user}', '${dk_username_user}',
+                                                                  '/upload1/tenor.gif', '/upload1/default-image.jpg')`);
+                res.json({
+                    msg: 'Sign up success'
+                })
             }
         }
     })
@@ -101,9 +109,18 @@ const loginAccountUser = async (req, res) => {
                 msg: 'account error'
             })
         } else {
-            const result_id_account = await query(`SELECT id FROM account_user WHERE username = '${dn_username_user}' AND password = '${dn_password_user}'`);
-            const result = await query(`SELECT 1 as v FROM account_user WHERE username = '${dn_username_user}' AND password = '${dn_password_user}'`);
-            const result1 = await query(`SELECT * FROM account_user WHERE username = '${dn_username_user}' AND password = '${dn_password_user}'`);
+            const result_id_account = await query(`SELECT id
+                                                   FROM account_user
+                                                   WHERE username = '${dn_username_user}'
+                                                     AND password = '${dn_password_user}'`);
+            const result = await query(`SELECT 1 as v
+                                        FROM account_user
+                                        WHERE username = '${dn_username_user}'
+                                          AND password = '${dn_password_user}'`);
+            const result1 = await query(`SELECT *
+                                         FROM account_user
+                                         WHERE username = '${dn_username_user}'
+                                           AND password = '${dn_password_user}'`);
 
             if (result[0] == undefined) {
                 res.json({
@@ -113,10 +130,12 @@ const loginAccountUser = async (req, res) => {
             if (result[0] != undefined) {
                 if (result[0].v == 1) {
                     const id_user = result1[0].id;
-                    const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
-                    if (check_profile[0] == undefined){
+                    const check_profile = await query(`SELECT 1 AS ch
+                                                       FROM profile_user
+                                                       WHERE id_of_user = '${id_user}'`);
+                    if (check_profile[0] == undefined) {
                         res.json({msg: 'login success', rl: result_id_account});
-                    }else {
+                    } else {
                         res.json({msg: 'login success', rl: result_id_account});
                     }
                 }
@@ -129,27 +148,50 @@ const loginAccountUser = async (req, res) => {
 const homeUser = async (req, res) => {
     try {
         const id_user = req.query.id_user;
-        const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
-        const result_post = await query(`SELECT * FROM post WHERE allowed = 1`);
-        const result_comment = await query(`SELECT * FROM comment`);
+        const name_user = await query(`SELECT name_user
+                                       FROM account_user
+                                       WHERE id = '${id_user}'`);
+        const result_post = await query(`SELECT *
+                                         FROM post
+                                         WHERE allowed = 1`);
+        const result_comment = await query(`SELECT *
+                                            FROM comment`);
 
-        const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
+        const check_profile = await query(`SELECT 1 AS ch
+                                           FROM profile_user
+                                           WHERE id_of_user = '${id_user}'`);
         if (check_profile[0] == undefined) {
-            const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
+            const result_profile = await query(`SELECT *
+                                                FROM profile_user
+                                                WHERE id = 1`);
             const avatar = result_profile[0].avatar;
 
-            const update_avatar0 = await query(`UPDATE post SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-            const update_avatar1 = await query(`UPDATE comment SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-            const update_avatar2 = await query(`UPDATE reply SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
+            const update_avatar0 = await query(`UPDATE post
+                                                SET avatar = '${avatar}'
+                                                WHERE id_of_user = '${id_user}'`);
+            const update_avatar1 = await query(`UPDATE comment
+                                                SET avatar = '${avatar}'
+                                                WHERE id_of_user = '${id_user}'`);
+            const update_avatar2 = await query(`UPDATE reply
+                                                SET avatar = '${avatar}'
+                                                WHERE id_of_user = '${id_user}'`);
             res.render('user/homeUser', {name_user, id_user, result_post, result_comment, result_profile});
         } else {
             if (check_profile[0].ch == 1) {
-                const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                const result_profile = await query(`SELECT *
+                                                    FROM profile_user
+                                                    WHERE id_of_user = '${id_user}'`);
                 const avatar = result_profile[0].avatar;
 
-                const update_avatar0 = await query(`UPDATE post SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-                const update_avatar1 = await query(`UPDATE comment SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-                const update_avatar2 = await query(`UPDATE reply SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
+                const update_avatar0 = await query(`UPDATE post
+                                                    SET avatar = '${avatar}'
+                                                    WHERE id_of_user = '${id_user}'`);
+                const update_avatar1 = await query(`UPDATE comment
+                                                    SET avatar = '${avatar}'
+                                                    WHERE id_of_user = '${id_user}'`);
+                const update_avatar2 = await query(`UPDATE reply
+                                                    SET avatar = '${avatar}'
+                                                    WHERE id_of_user = '${id_user}'`);
                 res.render('user/homeUser', {name_user, id_user, result_post, result_comment, result_profile});
             }
         }
@@ -182,26 +224,45 @@ const post = async (req, res) => {
             }
             if (txtaContent != "" || req.file != undefined) {
                 // check xem thử có tồn tại ảnh đại diện chưa
-                const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
+                const check_profile = await query(`SELECT 1 AS ch
+                                                   FROM profile_user
+                                                   WHERE id_of_user = '${id_user}'`);
 
-                const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
+                const name_user = await query(`SELECT name_user
+                                               FROM account_user
+                                               WHERE id = '${id_user}'`);
                 const name = name_user[0].name_user;
 
                 // đăng bài khi không có ảnh
                 if (req.file == undefined) {
                     // nếu chưa có ảnh đại diện thì lấy ảnh mặc định
                     if (check_profile[0] == undefined) {
-                        const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
+                        const result_profile = await query(`SELECT *
+                                                            FROM profile_user
+                                                            WHERE id = 1`);
                         const avatar = result_profile[0].avatar;
 
-                        const post = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Incomplete','${txtaContent}',null ,'${timeFull}','${name}', '${avatar}',null, null, null, null, null,0)`);
+                        const post = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image,
+                                                                   date_posted, name_user, avatar, detail_content,
+                                                                   material, material_price, time_do, level_do, allowed)
+                                                  VALUES (null, '${id_user}', 'Incomplete', '${txtaContent}', null,
+                                                          '${timeFull}', '${name}', '${avatar}', null, null, null, null,
+                                                          null, 0)`);
                     } else {
                         // nếu có thì lấy ảnh vào thôi
                         if (check_profile[0].ch == 1) {
-                            const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                            const result_profile = await query(`SELECT *
+                                                                FROM profile_user
+                                                                WHERE id_of_user = '${id_user}'`);
                             const avatar = result_profile[0].avatar;
 
-                            const post1 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Incomplete','${txtaContent}',null ,'${timeFull}','${name}', '${avatar}',null, null, null, null, null,0)`);
+                            const post1 = await query(`INSERT INTO post(id, id_of_user, post_status, content,
+                                                                        link_image, date_posted, name_user, avatar,
+                                                                        detail_content, material, material_price,
+                                                                        time_do, level_do, allowed)
+                                                       VALUES (null, '${id_user}', 'Incomplete', '${txtaContent}', null,
+                                                               '${timeFull}', '${name}', '${avatar}', null, null, null,
+                                                               null, null, 0)`);
                         }
                     }
                 }
@@ -209,17 +270,33 @@ const post = async (req, res) => {
                 if (req.file != undefined) {
                     // nếu chưa có ảnh đại diện thì lấy ảnh mặc định
                     if (check_profile[0] == undefined) {
-                        const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
+                        const result_profile = await query(`SELECT *
+                                                            FROM profile_user
+                                                            WHERE id = 1`);
                         const avatar = result_profile[0].avatar;
 
-                        const post2 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar,detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Incomplete','${txtaContent}','/upload/${req.file.filename}','${timeFull}','${name}', '${avatar}',null, null, null, null, null,0)`);
+                        const post2 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image,
+                                                                    date_posted, name_user, avatar, detail_content,
+                                                                    material, material_price, time_do, level_do,
+                                                                    allowed)
+                                                   VALUES (null, '${id_user}', 'Incomplete', '${txtaContent}',
+                                                           '/upload/${req.file.filename}', '${timeFull}', '${name}',
+                                                           '${avatar}', null, null, null, null, null, 0)`);
                     } else {
                         // nếu có thì lấy ảnh vào thôi
                         if (check_profile[0].ch == 1) {
-                            const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                            const result_profile = await query(`SELECT *
+                                                                FROM profile_user
+                                                                WHERE id_of_user = '${id_user}'`);
                             const avatar = result_profile[0].avatar;
 
-                            const post3 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar,detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Incomplete','${txtaContent}','/upload/${req.file.filename}','${timeFull}','${name}', '${avatar}',null, null, null, null, null,0)`);
+                            const post3 = await query(`INSERT INTO post(id, id_of_user, post_status, content,
+                                                                        link_image, date_posted, name_user, avatar,
+                                                                        detail_content, material, material_price,
+                                                                        time_do, level_do, allowed)
+                                                       VALUES (null, '${id_user}', 'Incomplete', '${txtaContent}',
+                                                               '/upload/${req.file.filename}', '${timeFull}', '${name}',
+                                                               '${avatar}', null, null, null, null, null, 0)`);
                         }
                     }
                 }
@@ -258,22 +335,37 @@ const comment = async (req, res) => {
                 msg: 'nothing'
             })
         } else {
-            const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
+            const name_user = await query(`SELECT name_user
+                                           FROM account_user
+                                           WHERE id = '${id_user}'`);
             const name = name_user[0].name_user;
-            const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
+            const check_profile = await query(`SELECT 1 AS ch
+                                               FROM profile_user
+                                               WHERE id_of_user = '${id_user}'`);
 
             if (check_profile[0] == undefined) {
-                const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
+                const result_profile = await query(`SELECT *
+                                                    FROM profile_user
+                                                    WHERE id = 1`);
                 const avatar = result_profile[0].avatar;
-                const comment = await query(`INSERT INTO comment (id, id_of_user, id_of_post, name_user, avatar,comment_content, date_comment) VALUES (null, '${id_user}', '${id_post}', '${name}', '${avatar}','${inputComment}', '${timeFull}')`);
+                const comment = await query(`INSERT INTO comment (id, id_of_user, id_of_post, name_user, avatar,
+                                                                  comment_content, date_comment)
+                                             VALUES (null, '${id_user}', '${id_post}', '${name}', '${avatar}',
+                                                     '${inputComment}', '${timeFull}')`);
             } else {
                 if (check_profile[0].ch == 1) {
-                    const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                    const result_profile = await query(`SELECT *
+                                                        FROM profile_user
+                                                        WHERE id_of_user = '${id_user}'`);
                     const avatar = result_profile[0].avatar;
-                    const comment1 = await query(`INSERT INTO comment (id, id_of_user, id_of_post, name_user, avatar,comment_content, date_comment) VALUES (null, '${id_user}', '${id_post}', '${name}', '${avatar}','${inputComment}', '${timeFull}')`);
+                    const comment1 = await query(`INSERT INTO comment (id, id_of_user, id_of_post, name_user, avatar,
+                                                                       comment_content, date_comment)
+                                                  VALUES (null, '${id_user}', '${id_post}', '${name}', '${avatar}',
+                                                          '${inputComment}', '${timeFull}')`);
                 }
             }
-            const check_comment = await query(`SELECT * FROM comment`);
+            const check_comment = await query(`SELECT *
+                                               FROM comment`);
             const number_comment = check_comment.length;
             const id_comment_ = check_comment[number_comment - 1].id;
             await res.json({
@@ -290,10 +382,15 @@ const comment = async (req, res) => {
 const loadComment = async (req, res) => {
     try {
         const {id_user} = req.query;
-        const result_post = await query(`SELECT * FROM post`);
-        const result_comment = await query(`SELECT * FROM comment`);
-        const result_reply_comment = await query(`SELECT * FROM reply`);
-        const result_like = await query(`SELECT * FROM like_of_post WHERE id_of_user = '${id_user}'`);
+        const result_post = await query(`SELECT *
+                                         FROM post`);
+        const result_comment = await query(`SELECT *
+                                            FROM comment`);
+        const result_reply_comment = await query(`SELECT *
+                                                  FROM reply`);
+        const result_like = await query(`SELECT *
+                                         FROM like_of_post
+                                         WHERE id_of_user = '${id_user}'`);
         await res.json({
             result_post, result_comment, result_reply_comment, result_like
         })
@@ -321,19 +418,33 @@ const replyComment = async (req, res) => {
         const {id_user, id_comment} = req.query;
         const {inputReply} = req.body;
 
-        const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
+        const name_user = await query(`SELECT name_user
+                                       FROM account_user
+                                       WHERE id = '${id_user}'`);
         const name = name_user[0].name_user;
-        const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
+        const check_profile = await query(`SELECT 1 AS ch
+                                           FROM profile_user
+                                           WHERE id_of_user = '${id_user}'`);
 
         if (check_profile[0] == undefined) {
-            const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
+            const result_profile = await query(`SELECT *
+                                                FROM profile_user
+                                                WHERE id = 1`);
             const avatar = result_profile[0].avatar;
-            const reply = await query(`INSERT INTO reply(id, id_of_user, id_of_comment, name_user, avatar,reply_content, date_replied) VALUES (null, '${id_user}', '${id_comment}', '${name}', '${avatar}','${inputReply}', '${timeFull}')`);
+            const reply = await query(`INSERT INTO reply(id, id_of_user, id_of_comment, name_user, avatar,
+                                                         reply_content, date_replied)
+                                       VALUES (null, '${id_user}', '${id_comment}', '${name}', '${avatar}',
+                                               '${inputReply}', '${timeFull}')`);
         } else {
             if (check_profile[0].ch == 1) {
-                const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                const result_profile = await query(`SELECT *
+                                                    FROM profile_user
+                                                    WHERE id_of_user = '${id_user}'`);
                 const avatar = result_profile[0].avatar;
-                const reply1 = await query(`INSERT INTO reply(id, id_of_user, id_of_comment, name_user, avatar, reply_content, date_replied) VALUES (null, '${id_user}', '${id_comment}', '${name}', '${avatar}','${inputReply}', '${timeFull}')`);
+                const reply1 = await query(`INSERT INTO reply(id, id_of_user, id_of_comment, name_user, avatar,
+                                                              reply_content, date_replied)
+                                            VALUES (null, '${id_user}', '${id_comment}', '${name}', '${avatar}',
+                                                    '${inputReply}', '${timeFull}')`);
             }
         }
 
@@ -349,8 +460,14 @@ const replyComment = async (req, res) => {
 const deleteComment = async (req, res) => {
     try {
         const {id_user, id_comment} = req.query;
-        const delete_comment = await query(`DELETE FROM comment WHERE id_of_user = '${id_user}' AND id = '${id_comment}'`);
-        const delete_reply_comment = await query(`DELETE FROM reply WHERE id_of_user = '${id_user}' AND id_of_comment = '${id_comment}'`);
+        const delete_comment = await query(`DELETE
+                                            FROM comment
+                                            WHERE id_of_user = '${id_user}'
+                                              AND id = '${id_comment}'`);
+        const delete_reply_comment = await query(`DELETE
+                                                  FROM reply
+                                                  WHERE id_of_user = '${id_user}'
+                                                    AND id_of_comment = '${id_comment}'`);
         await res.json({
             msg: 'delete success'
         })
@@ -363,28 +480,52 @@ const deleteComment = async (req, res) => {
 const pageSearch = async (req, res) => {
     try {
         const {id_user, search} = req.query;
-        const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
-        const result_post = await query(`SELECT * FROM post WHERE content LIKE '%${search}%' AND allowed = 1`);
-        const result_comment = await query(`SELECT * FROM comment`);
+        const name_user = await query(`SELECT name_user
+                                       FROM account_user
+                                       WHERE id = '${id_user}'`);
+        const result_post = await query(`SELECT *
+                                         FROM post
+                                         WHERE content LIKE '%${search}%'
+                                           AND allowed = 1`);
+        const result_comment = await query(`SELECT *
+                                            FROM comment`);
 
-        const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
+        const check_profile = await query(`SELECT 1 AS ch
+                                           FROM profile_user
+                                           WHERE id_of_user = '${id_user}'`);
         if (check_profile[0] == undefined) {
-            const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
+            const result_profile = await query(`SELECT *
+                                                FROM profile_user
+                                                WHERE id = 1`);
             const image_default = result_profile[0].cover_image;
             const avatar = result_profile[0].avatar;
 
-            const update_avatar0 = await query(`UPDATE post SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-            const update_avatar1 = await query(`UPDATE comment SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-            const update_avatar2 = await query(`UPDATE reply SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
+            const update_avatar0 = await query(`UPDATE post
+                                                SET avatar = '${avatar}'
+                                                WHERE id_of_user = '${id_user}'`);
+            const update_avatar1 = await query(`UPDATE comment
+                                                SET avatar = '${avatar}'
+                                                WHERE id_of_user = '${id_user}'`);
+            const update_avatar2 = await query(`UPDATE reply
+                                                SET avatar = '${avatar}'
+                                                WHERE id_of_user = '${id_user}'`);
             res.render('user/pageSearch', {name_user, id_user, result_post, result_comment, result_profile});
         } else {
             if (check_profile[0].ch == 1) {
-                const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                const result_profile = await query(`SELECT *
+                                                    FROM profile_user
+                                                    WHERE id_of_user = '${id_user}'`);
                 const avatar = result_profile[0].avatar;
 
-                const update_avatar0 = await query(`UPDATE post SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-                const update_avatar1 = await query(`UPDATE comment SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-                const update_avatar2 = await query(`UPDATE reply SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
+                const update_avatar0 = await query(`UPDATE post
+                                                    SET avatar = '${avatar}'
+                                                    WHERE id_of_user = '${id_user}'`);
+                const update_avatar1 = await query(`UPDATE comment
+                                                    SET avatar = '${avatar}'
+                                                    WHERE id_of_user = '${id_user}'`);
+                const update_avatar2 = await query(`UPDATE reply
+                                                    SET avatar = '${avatar}'
+                                                    WHERE id_of_user = '${id_user}'`);
                 res.render('user/pageSearch', {name_user, id_user, result_post, result_comment, result_profile});
             }
         }
@@ -397,8 +538,12 @@ const pageSearch = async (req, res) => {
 const pagePostDetail = async (req, res) => {
     try {
         const id_user = req.query.id_user;
-        const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
-        const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+        const name_user = await query(`SELECT name_user
+                                       FROM account_user
+                                       WHERE id = '${id_user}'`);
+        const result_profile = await query(`SELECT *
+                                            FROM profile_user
+                                            WHERE id_of_user = '${id_user}'`);
         res.render('user/pagePostDetail', {id_user, name_user, result_profile});
     } catch (e) {
         console.log(e);
@@ -418,29 +563,59 @@ const postDetail = async (req, res) => {
             let timeFull = "Ngày " + date + " tháng " + month + ", " + year;
 
             const id_user = req.query.id_user;
-            const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
+            const name_user = await query(`SELECT name_user
+                                           FROM account_user
+                                           WHERE id = '${id_user}'`);
             const name = name_user[0].name_user;
 
-            const {inputContent, detail_content, inputMaterial, inputMaterialPrice, inputTimeDo, selectLevelDo} = req.body;
+            const {
+                inputContent,
+                detail_content,
+                inputMaterial,
+                inputMaterialPrice,
+                inputTimeDo,
+                selectLevelDo
+            } = req.body;
 
             // check xem thử có tồn tại ảnh đại diện chưa
-            const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
+            const check_profile = await query(`SELECT 1 AS ch
+                                               FROM profile_user
+                                               WHERE id_of_user = '${id_user}'`);
 
             // đăng bài khi không có ảnh
             if (req.file == undefined) {
                 // nếu chưa có ảnh đại diện thì lấy ảnh mặc định
                 if (check_profile[0] == undefined) {
-                    const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
+                    const result_profile = await query(`SELECT *
+                                                        FROM profile_user
+                                                        WHERE id = 1`);
                     const avatar = result_profile[0].avatar;
 
-                    const post_detail = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Complete','${inputContent}',null ,'${timeFull}','${name}', '${avatar}', '${detail_content}', '${inputMaterial}', '${inputMaterialPrice}', '${inputTimeDo}', '${selectLevelDo}',0)`);
+                    const post_detail = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image,
+                                                                      date_posted, name_user, avatar, detail_content,
+                                                                      material, material_price, time_do, level_do,
+                                                                      allowed)
+                                                     VALUES (null, '${id_user}', 'Complete', '${inputContent}', null,
+                                                             '${timeFull}', '${name}', '${avatar}', '${detail_content}',
+                                                             '${inputMaterial}', '${inputMaterialPrice}',
+                                                             '${inputTimeDo}', '${selectLevelDo}', 0)`);
                 } else {
                     // nếu có thì lấy ảnh vào thôi
                     if (check_profile[0].ch == 1) {
-                        const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                        const result_profile = await query(`SELECT *
+                                                            FROM profile_user
+                                                            WHERE id_of_user = '${id_user}'`);
                         const avatar = result_profile[0].avatar;
 
-                        const post_detail1 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Complete','${inputContent}',null ,'${timeFull}','${name}', '${avatar}', '${detail_content}', '${inputMaterial}', '${inputMaterialPrice}', '${inputTimeDo}', '${selectLevelDo}',0)`);
+                        const post_detail1 = await query(`INSERT INTO post(id, id_of_user, post_status, content,
+                                                                           link_image, date_posted, name_user, avatar,
+                                                                           detail_content, material, material_price,
+                                                                           time_do, level_do, allowed)
+                                                          VALUES (null, '${id_user}', 'Complete', '${inputContent}',
+                                                                  null, '${timeFull}', '${name}', '${avatar}',
+                                                                  '${detail_content}', '${inputMaterial}',
+                                                                  '${inputMaterialPrice}', '${inputTimeDo}',
+                                                                  '${selectLevelDo}', 0)`);
                     }
                 }
             }
@@ -448,17 +623,37 @@ const postDetail = async (req, res) => {
             else {
                 // nếu chưa có ảnh đại diện thì lấy ảnh mặc định
                 if (check_profile[0] == undefined) {
-                    const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
+                    const result_profile = await query(`SELECT *
+                                                        FROM profile_user
+                                                        WHERE id = 1`);
                     const avatar = result_profile[0].avatar;
 
-                    const post_detail2 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Complete','${inputContent}','/upload/${req.file.filename}' ,'${timeFull}','${name}', '${avatar}', '${detail_content}', '${inputMaterial}', '${inputMaterialPrice}', '${inputTimeDo}', '${selectLevelDo}',0)`);
+                    const post_detail2 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image,
+                                                                       date_posted, name_user, avatar, detail_content,
+                                                                       material, material_price, time_do, level_do,
+                                                                       allowed)
+                                                      VALUES (null, '${id_user}', 'Complete', '${inputContent}',
+                                                              '/upload/${req.file.filename}', '${timeFull}', '${name}',
+                                                              '${avatar}', '${detail_content}', '${inputMaterial}',
+                                                              '${inputMaterialPrice}', '${inputTimeDo}',
+                                                              '${selectLevelDo}', 0)`);
                 } else {
                     // nếu có thì lấy ảnh vào thôi
                     if (check_profile[0].ch == 1) {
-                        const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                        const result_profile = await query(`SELECT *
+                                                            FROM profile_user
+                                                            WHERE id_of_user = '${id_user}'`);
                         const avatar = result_profile[0].avatar;
 
-                        const post_detail3 = await query(`INSERT INTO post(id, id_of_user, post_status, content, link_image, date_posted, name_user, avatar, detail_content, material, material_price, time_do, level_do, allowed) VALUES (null,'${id_user}','Complete','${inputContent}','/upload/${req.file.filename}' ,'${timeFull}','${name}', '${avatar}', '${detail_content}', '${inputMaterial}', '${inputMaterialPrice}', '${inputTimeDo}', '${selectLevelDo}',0)`);
+                        const post_detail3 = await query(`INSERT INTO post(id, id_of_user, post_status, content,
+                                                                           link_image, date_posted, name_user, avatar,
+                                                                           detail_content, material, material_price,
+                                                                           time_do, level_do, allowed)
+                                                          VALUES (null, '${id_user}', 'Complete', '${inputContent}',
+                                                                  '/upload/${req.file.filename}', '${timeFull}',
+                                                                  '${name}', '${avatar}', '${detail_content}',
+                                                                  '${inputMaterial}', '${inputMaterialPrice}',
+                                                                  '${inputTimeDo}', '${selectLevelDo}', 0)`);
                     }
                 }
             }
@@ -479,20 +674,40 @@ const pageProfile = async (req, res) => {
         // nếu là bản thân
         if (id_user === id_using) {
             distinguish = 'mySelf';
-            const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
-            const name_user1 = await query(`SELECT name_user FROM account_user WHERE id = '${id_using}'`);
-            const result_post = await query(`SELECT * FROM post WHERE id_of_user = '${id_using}' AND allowed = 1`);
-            const result_comment = await query(`SELECT * FROM comment`);
-            const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_using}'`);
+            const name_user = await query(`SELECT name_user
+                                           FROM account_user
+                                           WHERE id = '${id_user}'`);
+            const name_user1 = await query(`SELECT name_user
+                                            FROM account_user
+                                            WHERE id = '${id_using}'`);
+            const result_post = await query(`SELECT *
+                                             FROM post
+                                             WHERE id_of_user = '${id_using}'
+                                               AND allowed = 1`);
+            const result_comment = await query(`SELECT *
+                                                FROM comment`);
+            const check_profile = await query(`SELECT 1 AS ch
+                                               FROM profile_user
+                                               WHERE id_of_user = '${id_using}'`);
 
             // chưa set up ảnh đại diện
             if (check_profile[0] == undefined) {
-                const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
-                const result_profile1 = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                const result_profile = await query(`SELECT *
+                                                    FROM profile_user
+                                                    WHERE id_of_user = '${id_user}'`);
+                const result_profile1 = await query(`SELECT *
+                                                     FROM profile_user
+                                                     WHERE id_of_user = '${id_user}'`);
                 const avatar = result_profile[0].avatar;
-                const update_avatar0 = await query(`UPDATE post SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-                const update_avatar1 = await query(`UPDATE comment SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-                const update_avatar2 = await query(`UPDATE reply SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
+                const update_avatar0 = await query(`UPDATE post
+                                                    SET avatar = '${avatar}'
+                                                    WHERE id_of_user = '${id_user}'`);
+                const update_avatar1 = await query(`UPDATE comment
+                                                    SET avatar = '${avatar}'
+                                                    WHERE id_of_user = '${id_user}'`);
+                const update_avatar2 = await query(`UPDATE reply
+                                                    SET avatar = '${avatar}'
+                                                    WHERE id_of_user = '${id_user}'`);
                 res.render('user/pageProfile', {
                     name_user, name_user1, id_user, id_using, result_post, result_comment, result_profile,
                     distinguish, result_profile1
@@ -501,12 +716,22 @@ const pageProfile = async (req, res) => {
             // đã set up ảnh đại diện
             else {
                 if (check_profile[0].ch == 1) {
-                    const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
-                    const result_profile1 = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+                    const result_profile = await query(`SELECT *
+                                                        FROM profile_user
+                                                        WHERE id_of_user = '${id_user}'`);
+                    const result_profile1 = await query(`SELECT *
+                                                         FROM profile_user
+                                                         WHERE id_of_user = '${id_user}'`);
                     const avatar = result_profile[0].avatar;
-                    const update_avatar0 = await query(`UPDATE post SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-                    const update_avatar1 = await query(`UPDATE comment SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
-                    const update_avatar2 = await query(`UPDATE reply SET avatar = '${avatar}' WHERE id_of_user = '${id_user}'`);
+                    const update_avatar0 = await query(`UPDATE post
+                                                        SET avatar = '${avatar}'
+                                                        WHERE id_of_user = '${id_user}'`);
+                    const update_avatar1 = await query(`UPDATE comment
+                                                        SET avatar = '${avatar}'
+                                                        WHERE id_of_user = '${id_user}'`);
+                    const update_avatar2 = await query(`UPDATE reply
+                                                        SET avatar = '${avatar}'
+                                                        WHERE id_of_user = '${id_user}'`);
                     res.render('user/pageProfile', {
                         name_user, name_user1, id_user, id_using, result_post, result_comment, result_profile,
                         distinguish, result_profile1
@@ -516,62 +741,138 @@ const pageProfile = async (req, res) => {
         }
         // nếu là người khác
         else {
-            const check_friend = await query(`SELECT 1 AS ch FROM friend WHERE id_of_sender = '${id_user}' AND id_of_recipient = '${id_using}'`);
-            const name_user = await query(`SELECT name_user FROM account_user WHERE id = '${id_user}'`);
-            const name_user1 = await query(`SELECT name_user FROM account_user WHERE id = '${id_using}'`);
-            const result_post = await query(`SELECT * FROM post WHERE id_of_user = '${id_using}'`);
-            const result_comment = await query(`SELECT * FROM comment`);
-            const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_using}'`);
-            // chưa set up phần ảnh đại diện
-            if (check_profile[0] == undefined) {
-                const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
-                // chưa gửi lời mời kết bạn
-                if (check_friend[0] == undefined) {
-                    const result_profile1 = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
+            const check_friend = await query(`SELECT 1 AS ch
+                                              FROM friend
+                                              WHERE id_of_sender = '${id_user}'
+                                                AND id_of_recipient = '${id_using}'`);
+            const name_user = await query(`SELECT name_user
+                                           FROM account_user
+                                           WHERE id = '${id_user}'`);
+            const name_user1 = await query(`SELECT name_user
+                                            FROM account_user
+                                            WHERE id = '${id_using}'`);
+            const result_post = await query(`SELECT *
+                                             FROM post
+                                             WHERE id_of_user = '${id_using}'`);
+            const result_comment = await query(`SELECT *
+                                                FROM comment`);
+            const check_profile = await query(`SELECT 1 AS ch
+                                               FROM profile_user
+                                               WHERE id_of_user = '${id_using}'`);
+
+
+            const result_profile = await query(`SELECT *
+                                                FROM profile_user
+                                                WHERE id_of_user = '${id_using}'`);
+            if (check_friend[0] == undefined) {
+                const check_friend1 = await query(`SELECT 1 AS ch
+                                                   FROM friend
+                                                   WHERE id_of_sender = '${id_using}'
+                                                     AND id_of_recipient = '${id_user}'`);
+                if (check_friend1[0] == undefined) {
+                    const result_profile1 = await query(`SELECT *
+                                                         FROM profile_user
+                                                         WHERE id_of_user = '${id_user}'`);
                     distinguish = 'others';
                     res.render('user/pageProfile', {
-                        name_user, name_user1, id_user, id_using, result_post, result_comment, result_profile,
-                        distinguish, result_profile1
+                        name_user,
+                        name_user1,
+                        id_user,
+                        id_using,
+                        result_post,
+                        result_comment,
+                        result_profile,
+                        distinguish,
+                        result_profile1
                     });
-                }
-                // đã gửi lời mời kết bạn
-                else {
-                    if (check_friend[0].ch == 1) {
-                        const result_profile1 = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
-                        distinguish = 'sending_to_friend';
-                        res.render('user/pageProfile', {
-                            name_user, name_user1, id_user, id_using, result_post, result_comment, result_profile,
-                            distinguish, result_profile1
-                        });
-                    }
-                }
-            }
-            // đã set up phần ảnh đại diện
-            else {
-                if (check_profile[0].ch == 1) {
-                    const result_profile = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_using}'`);
-                    // chưa gửi lời mời kết bạn
-                    if (check_friend[0] == undefined) {
-                        const result_profile1 = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
-                        distinguish = 'others';
-                        res.render('user/pageProfile', {
-                            name_user, name_user1, id_user, id_using, result_post, result_comment, result_profile, distinguish,
-                            result_profile1
-                        });
-                    }
-                    // đã gửi lời mời kết bạn
-                    else {
-                        if (check_friend[0].ch == 1) {
-                            const result_profile1 = await query(`SELECT * FROM profile_user WHERE id_of_user = '${id_user}'`);
-                            distinguish = 'sending_to_friend';
+                } else {
+                    if (check_friend1[0].ch == 1) {
+                        const result_profile1 = await query(`SELECT *
+                                                             FROM profile_user
+                                                             WHERE id_of_user = '${id_user}'`);
+                        const checkStatusAllowed = await query(`SELECT *
+                                                                FROM friend
+                                                                WHERE id_of_sender = '${id_using}'
+                                                                  AND id_of_recipient = '${id_user}'`);
+                        if (checkStatusAllowed[0].allowed == 0) {
+                            distinguish = 'waiting_to_accept';
                             res.render('user/pageProfile', {
-                                name_user, name_user1, id_user, id_using, result_post, result_comment, result_profile, distinguish,
+                                name_user,
+                                name_user1,
+                                id_user,
+                                id_using,
+                                result_post,
+                                result_comment,
+                                result_profile,
+                                distinguish,
+                                result_profile1
+                            });
+                        } else {
+                            distinguish = 'made_friend';
+                            res.render('user/pageProfile', {
+                                name_user,
+                                name_user1,
+                                id_user,
+                                id_using,
+                                result_post,
+                                result_comment,
+                                result_profile,
+                                distinguish,
                                 result_profile1
                             });
                         }
                     }
                 }
+
             }
+            // đã gửi lời mời kết bạn
+            else {
+                if (check_friend[0].ch == 1) {
+                    const checkStatus = await query(`SELECT *
+                                                     FROM friend`);
+                    console.log(checkStatus[0].id_of_sender); //2
+                    console.log(checkStatus[0].id_of_recipient); //6
+                    console.log(checkStatus[0].status);
+                    const str = checkStatus[0].id_of_sender + "-" + checkStatus[0].id_of_recipient;
+                    const result_profile1 = await query(`SELECT *
+                                                         FROM profile_user
+                                                         WHERE id_of_user = '${id_user}'`);
+                    const checkStatusAllowed = await query(`SELECT *
+                                                            FROM friend
+                                                            WHERE id_of_sender = '${id_user}'
+                                                              AND id_of_recipient = '${id_using}'`);
+                    console.log(checkStatusAllowed);
+                    if (checkStatusAllowed[0].allowed == 0) {
+                        distinguish = 'sending_to_friend';
+                        res.render('user/pageProfile', {
+                            name_user,
+                            name_user1,
+                            id_user,
+                            id_using,
+                            result_post,
+                            result_comment,
+                            result_profile,
+                            distinguish,
+                            result_profile1
+                        });
+                    } else {
+                        distinguish = 'made_friend';
+                        res.render('user/pageProfile', {
+                            name_user,
+                            name_user1,
+                            id_user,
+                            id_using,
+                            result_post,
+                            result_comment,
+                            result_profile,
+                            distinguish,
+                            result_profile1
+                        });
+                    }
+
+                }
+            }
+            console.log(distinguish);
         }
     } catch (e) {
         console.error(e);
@@ -583,17 +884,24 @@ const editCoverImage = async (req, res) => {
     upload1(req, res, async () => {
         try {
             const {id_user} = req.query;
-            const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
+            const result_profile = await query(`SELECT *
+                                                FROM profile_user
+                                                WHERE id = 1`);
             const image_default = result_profile[0].avatar;
-            const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
+            const check_profile = await query(`SELECT 1 AS ch
+                                               FROM profile_user
+                                               WHERE id_of_user = '${id_user}'`);
             if (check_profile[0] == undefined) {
-                const insert_image = await query(`INSERT INTO profile_user (id, id_of_user, avatar, cover_image) VALUES (null, '${id_user}', '${image_default}', '/upload1/${req.file.filename}')`);
+                const insert_image = await query(`INSERT INTO profile_user (id, id_of_user, avatar, cover_image)
+                                                  VALUES (null, '${id_user}', '${image_default}', '/upload1/${req.file.filename}')`);
                 await res.json({
                     msg: 'insert cover image success'
                 })
             } else {
                 if (check_profile[0].ch == 1) {
-                    const update_image = await query(`UPDATE profile_user SET cover_image = '/upload1/${req.file.filename}' WHERE id_of_user = '${id_user}'`);
+                    const update_image = await query(`UPDATE profile_user
+                                                      SET cover_image = '/upload1/${req.file.filename}'
+                                                      WHERE id_of_user = '${id_user}'`);
                     await res.json({
                         msg: 'insert cover image success'
                     })
@@ -610,22 +918,31 @@ const editAvatar = async (req, res) => {
     upload1(req, res, async () => {
         try {
             const {id_user} = req.query;
-            const result_profile = await query(`SELECT * FROM profile_user WHERE id = 1`);
-            const image_default = result_profile[0].cover_image;
-            const check_profile = await query(`SELECT 1 AS ch FROM profile_user WHERE id_of_user = '${id_user}'`);
-            if (check_profile[0] == undefined) {
-                const insert_avatar = await query(`INSERT INTO profile_user (id, id_of_user, avatar, cover_image) VALUES (null, '${id_user}', '/upload1/${req.file.filename}', '${image_default}')`);
-                await res.json({
-                    msg: 'insert avatar success'
-                })
-            } else {
-                if (check_profile[0].ch == 1) {
-                    const update_avatar = await query(`UPDATE profile_user SET avatar = '/upload1/${req.file.filename}' WHERE id_of_user = '${id_user}'`);
-                    await res.json({
-                        msg: 'insert avatar success'
-                    })
-                }
+            const result_profile = await query(`SELECT *
+                                                FROM profile_user
+                                                WHERE id = '${id_user}'`);
+            console.log(result_profile)
+            // const image_default = result_profile[0].cover_image;
+            const check_profile = await query(`SELECT 1 AS ch
+                                               FROM profile_user
+                                               WHERE id_of_user = '${id_user}'`);
+            console.log(check_profile);
+            // if (check_profile[0] == undefined) {
+            //     const insert_avatar = await query(`INSERT INTO profile_user (id, id_of_user, avatar, cover_image) VALUES (null, '${id_user}', '/upload1/${req.file.filename}', '${image_default}')`);
+            //     await res.json({
+            //         msg: 'insert new avatar success'
+            //     })
+            // } else {
+            if (check_profile[0].ch == 1) {
+                const update_avatar = await query(`UPDATE profile_user
+                                                   SET avatar = '/upload1/${req.file.filename}'
+                                                   WHERE id_of_user = '${id_user}'`);
+
             }
+            res.json({
+                msg: 'insert avatar success'
+            })
+            // }
         } catch (e) {
             console.error(e);
         }
@@ -637,27 +954,41 @@ const numberLike = async (req, res) => {
     try {
         const {id_user, id_post} = req.query;
         let number_like = 1;
-        const check_like_of_post = await query(`SELECT 1 AS ch FROM like_of_post WHERE id_of_post = '${id_post}'`);
+        const check_like_of_post = await query(`SELECT 1 AS ch
+                                                FROM like_of_post
+                                                WHERE id_of_post = '${id_post}'`);
         // kiếm tra 1 yếu tố dựa trên id_post
         if (check_like_of_post[0] == undefined) {
-            const insert_a_like = await query(`INSERT INTO like_of_post (id, id_of_user, id_of_post, number_like) VALUES (null, '${id_user}', '${id_post}','${number_like}')`);
+            const insert_a_like = await query(`INSERT INTO like_of_post (id, id_of_user, id_of_post, number_like)
+                                               VALUES (null, '${id_user}', '${id_post}', '${number_like}')`);
         } else {
             if (check_like_of_post[0].ch == 1) {
                 // kiểm tra 2 yếu tố id_user và i_post
-                const check_like = await query(`SELECT 1 AS ch FROM like_of_post WHERE id_of_post = '${id_post}' AND id_of_user = '${id_user}'`);
+                const check_like = await query(`SELECT 1 AS ch
+                                                FROM like_of_post
+                                                WHERE id_of_post = '${id_post}'
+                                                  AND id_of_user = '${id_user}'`);
                 if (check_like[0] == undefined) {
-                    const insert_a_like = await query(`INSERT INTO like_of_post (id, id_of_user, id_of_post, number_like) VALUES (null, '${id_user}', '${id_post}','${number_like}')`);
+                    const insert_a_like = await query(`INSERT INTO like_of_post (id, id_of_user, id_of_post, number_like)
+                                                       VALUES (null, '${id_user}', '${id_post}', '${number_like}')`);
                 } else {
                     if (check_like[0].ch == 1) {
-                        const delete_a_like = await query(`DELETE FROM like_of_post WHERE id_of_post ='${id_post}' AND id_of_user = '${id_user}'`);
+                        const delete_a_like = await query(`DELETE
+                                                           FROM like_of_post
+                                                           WHERE id_of_post = '${id_post}'
+                                                             AND id_of_user = '${id_user}'`);
                     }
                 }
             }
         }
-        const total_number_like = await query(`SELECT * FROM like_of_post WHERE id_of_post = '${id_post}'`);
+        const total_number_like = await query(`SELECT *
+                                               FROM like_of_post
+                                               WHERE id_of_post = '${id_post}'`);
         let total = 0;
         total += total_number_like.length;
-        const update_number_like_to_post = await query(`UPDATE post SET number_like ='${total}' WHERE id = '${id_post}'`);
+        const update_number_like_to_post = await query(`UPDATE post
+                                                        SET number_like ='${total}'
+                                                        WHERE id = '${id_post}'`);
         await res.json({
             msg: 'ok'
         })
@@ -670,8 +1001,12 @@ const numberLike = async (req, res) => {
 const countNumberLike = async (req, res) => {
     try {
         const {id_user, id_post} = req.query;
-        const check_number_like = await query(`SELECT * FROM post WHERE id = '${id_post}'`);
-        const result_like = await query(`SELECT * FROM like_of_post WHERE id_of_user = '${id_user}'`)
+        const check_number_like = await query(`SELECT *
+                                               FROM post
+                                               WHERE id = '${id_post}'`);
+        const result_like = await query(`SELECT *
+                                         FROM like_of_post
+                                         WHERE id_of_user = '${id_user}'`)
         await res.json({
             check_number_like, result_like
         })
@@ -684,9 +1019,13 @@ const countNumberLike = async (req, res) => {
 const sendFriendInvitations = async (req, res) => {
     try {
         const {id_sender, id_recipient} = req.query;
-        const check_friend = await query(`SELECT 1 AS ch FROM friend WHERE id_of_sender = '${id_sender}' AND id_of_recipient = '${id_recipient}'`);
+        const check_friend = await query(`SELECT 1 AS ch
+                                          FROM friend
+                                          WHERE id_of_sender = '${id_sender}'
+                                            AND id_of_recipient = '${id_recipient}'`);
         if (check_friend[0] == undefined) {
-            const send_friend_invitations = await query(`INSERT INTO friend (id, id_of_sender, id_of_recipient, allowed, notification_title) VALUES (null, '${id_sender}', '${id_recipient}', 0, 'add friend')`);
+            const send_friend_invitations = await query(`INSERT INTO friend (id, id_of_sender, id_of_recipient, allowed, notification_title)
+                                                         VALUES (null, '${id_sender}', '${id_recipient}', 0, 'add friend')`);
         } else {
             if (check_friend[0].ch == 1) {
                 return;
@@ -704,27 +1043,338 @@ const sendFriendInvitations = async (req, res) => {
 const deleteSendFriendInvitations = async (req, res) => {
     try {
         const {id_sender, id_recipient} = req.query;
-        const check_friend = await query(`SELECT 1 AS ch FROM friend WHERE id_of_sender = '${id_sender}' AND id_of_recipient = '${id_recipient}'`);
+        const check_friend = await query(`SELECT 1 AS ch
+                                          FROM friend
+                                          WHERE id_of_sender = '${id_sender}'
+                                            AND id_of_recipient = '${id_recipient}'`);
         if (check_friend[0] == undefined) {
-            return;
+            const check_friend1 = await query(`SELECT 1 AS ch
+                                               FROM friend
+                                               WHERE id_of_sender = '${id_recipient}'
+                                                 AND id_of_recipient = '${id_sender}'`);
+            if (check_friend1 == undefined) {
+                return
+            } else {
+                if (check_friend1[0].ch == 1) {
+                    const delete_send_friend_invitations = await query(`DELETE
+                                                                        FROM friend
+                                                                        WHERE id_of_sender = '${id_recipient}'
+                                                                          AND id_of_recipient = '${id_sender}'`);
+                    await res.json({
+                        msg: 'ok'
+                    })
+                }
+            }
         } else {
             if (check_friend[0].ch == 1) {
-                const delete_send_friend_invitations = await query(`DELETE FROM friend WHERE id_of_sender ='${id_sender}' AND id_of_recipient = '${id_recipient}'`);
+                const delete_send_friend_invitations = await query(`DELETE
+                                                                    FROM friend
+                                                                    WHERE id_of_sender = '${id_sender}'
+                                                                      AND id_of_recipient = '${id_recipient}'`);
+                await res.json({
+                    msg: 'ok'
+                })
             }
         }
-        await res.json({
-            msg: 'ok'
-        })
+
     } catch (e) {
         console.error(e);
     }
 }
 
+// xác nhận lời mời kết bạn
+const acceptFriendInvitations = async (req, res) => {
+    try {
+        const {id_sender, id_recipient} = req.query;
+        const check_friend = await query(`UPDATE friend
+                                          SET allowed = 1,
+                                              status  = 1
+                                          WHERE id_of_sender = '${id_recipient}'
+                                            AND id_of_recipient = '${id_sender}'`);
+        await res.json({
+            msg: 'ok'
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
 
+// trang bạn bè
+const pageFriendsUser = async (req, res) => {
+    try {
+        const {id_user, id_using} = req.query;
+        var getIdRecipient_ = [];
+        var getIdRecipient1_ = [];
+        var getIdRecipient2_ = [];
+        const name_user = await query(`SELECT name_user
+                                       FROM account_user
+                                       WHERE id = '${id_user}'`);
+        const result_profile = await query(`SELECT *
+                                            FROM profile_user
+                                            WHERE id_of_user = '${id_user}'`);
+        const result_profile1 = await query(`SELECT *
+                                             FROM profile_user
+                                             WHERE id_of_user = '${id_user}'`);
+        const name_user1 = await query(`SELECT name_user
+                                        FROM account_user
+                                        WHERE id = '${id_using}'`);
+        // kiểm tra xem tk có gửi lời mời kết bạn cho ai ko
+        const listOfFriendRequests = await query(`SELECT 1 AS ch
+                                                  FROM friend
+                                                  WHERE id_of_sender = '${id_user}'`);
+        // nếu không có thì kiểm tra xem có ai gửi lời mời cho bản thân ko
+        if (listOfFriendRequests[0] == undefined) {
+            const listOfFriendRequests1 = await query(`SELECT 1 AS ch1
+                                                       FROM friend
+                                                       WHERE id_of_recipient = '${id_user}'`);
+            // nếu ko có nữa thì trả về null
+            if (listOfFriendRequests1[0] == undefined) {
+                const get_id = await query(`SELECT *
+                                            FROM friend
+                                            WHERE id_of_recipient = '${id_user}'`);
+                // lấy danh sách những lời mời gửi cho bản thân
+                const listOfFriendRequests2_ = await query(`SELECT id_of_sender
+                                                            FROM friend
+                                                            WHERE id_of_recipient = '${id_user}'
+                                                              AND allowed = 0`);
+                // lấy danh sách mà bản thân đã gửi lời mời
+                const listOfFriendRequests_ = await query(`SELECT id_of_recipient
+                                                           FROM friend
+                                                           WHERE id_of_sender = '${id_user}'
+                                                             AND allowed = 0`);
+                // danh sách bạn bè đã xác nhận
+                const listOfFriendRequests1_ = await query(`SELECT id_of_sender
+                                                            FROM friend
+                                                            WHERE id_of_recipient = '${id_user}'
+                                                              AND allowed = 1`);
+                for (var key in listOfFriendRequests_) {
+                    if (!listOfFriendRequests_.hasOwnProperty(key)) continue;
+                    var obj = listOfFriendRequests_[key];
+                    for (var prop in obj) {
+                        if (!obj.hasOwnProperty(prop)) continue;
+                        const getIdRecipient = await query(`SELECT *
+                                                            FROM profile_user
+                                                            WHERE id_of_user = '${obj[prop]}'`);
+                        getIdRecipient_.push(getIdRecipient);
+                    }
+                }
 
+                for (var key in listOfFriendRequests1_) {
+                    if (!listOfFriendRequests1_.hasOwnProperty(key)) continue;
+                    var obj = listOfFriendRequests1_[key];
+                    for (var prop in obj) {
+                        if (!obj.hasOwnProperty(prop)) continue;
+                        const getIdRecipient1 = await query(`SELECT *
+                                                             FROM profile_user
+                                                             WHERE id_of_user = '${obj[prop]}'`);
+                        getIdRecipient1_.push(getIdRecipient1);
+                    }
+                }
 
+                for (var key in listOfFriendRequests2_) {
+                    if (!listOfFriendRequests2_.hasOwnProperty(key)) continue;
+                    var obj = listOfFriendRequests2_[key];
+                    for (var prop in obj) {
+                        if (!obj.hasOwnProperty(prop)) continue;
+                        const getIdRecipient2 = await query(`SELECT *
+                                                             FROM profile_user
+                                                             WHERE id_of_user = '${obj[prop]}'`);
+                        getIdRecipient2_.push(getIdRecipient2);
+                    }
+                }
+
+                res.render('user/pageFriendsUser', {
+                    get_id,
+                    name_user,
+                    name_user1,
+                    id_user,
+                    id_using,
+                    result_profile,
+                    result_profile1,
+                    getIdRecipient_,
+                    getIdRecipient1_,
+                    getIdRecipient2_
+                });
+            }
+            // nếu có thì lấy danh sách lời mời gửi cho bản thân
+            else {
+                if (listOfFriendRequests1[0].ch1 == 1) {
+                    const get_id = await query(`SELECT *
+                                                FROM friend
+                                                WHERE id_of_recipient = '${id_user}'`);
+                    // const distinguishConfirmOrDelete = "delete";
+                    // lấy danh sách những lời mời gửi cho bản thân
+                    const listOfFriendRequests2_ = await query(`SELECT id_of_sender
+                                                                FROM friend
+                                                                WHERE id_of_recipient = '${id_user}'
+                                                                  AND allowed = 0`);
+                    // lấy danh sách mà bản thân đã gửi lời mời
+                    const listOfFriendRequests_ = await query(`SELECT id_of_recipient
+                                                               FROM friend
+                                                               WHERE id_of_sender = '${id_user}'
+                                                                 AND allowed = 0`);
+                    // danh sách bạn bè đã xác nhận
+                    const listOfFriendRequests1_ = await query(`SELECT id_of_sender
+                                                                FROM friend
+                                                                WHERE id_of_recipient = '${id_user}'
+                                                                  AND allowed = 1`);
+                    for (var key in listOfFriendRequests_) {
+                        if (!listOfFriendRequests_.hasOwnProperty(key)) continue;
+                        var obj = listOfFriendRequests_[key];
+                        for (var prop in obj) {
+                            if (!obj.hasOwnProperty(prop)) continue;
+                            const getIdRecipient = await query(`SELECT *
+                                                                FROM profile_user
+                                                                WHERE id_of_user = '${obj[prop]}'`);
+                            getIdRecipient_.push(getIdRecipient);
+                        }
+                    }
+
+                    for (var key in listOfFriendRequests1_) {
+                        if (!listOfFriendRequests1_.hasOwnProperty(key)) continue;
+                        var obj = listOfFriendRequests1_[key];
+                        for (var prop in obj) {
+                            if (!obj.hasOwnProperty(prop)) continue;
+                            const getIdRecipient1 = await query(`SELECT *
+                                                                 FROM profile_user
+                                                                 WHERE id_of_user = '${obj[prop]}'`);
+                            getIdRecipient1_.push(getIdRecipient1);
+                        }
+                    }
+
+                    for (var key in listOfFriendRequests2_) {
+                        if (!listOfFriendRequests2_.hasOwnProperty(key)) continue;
+                        var obj = listOfFriendRequests2_[key];
+                        for (var prop in obj) {
+                            if (!obj.hasOwnProperty(prop)) continue;
+                            const getIdRecipient2 = await query(`SELECT *
+                                                                 FROM profile_user
+                                                                 WHERE id_of_user = '${obj[prop]}'`);
+                            getIdRecipient2_.push(getIdRecipient2);
+                        }
+                    }
+
+                    res.render('user/pageFriendsUser', {
+                        get_id,
+                        name_user,
+                        name_user1,
+                        id_user,
+                        id_using,
+                        result_profile,
+                        result_profile1,
+                        getIdRecipient_,
+                        getIdRecipient1_,
+                        getIdRecipient2_
+                    });
+                }
+            }
+        }
+        // nếu bản thân có gửi lời mời cho ai đó
+        else {
+            if (listOfFriendRequests[0].ch == 1) {
+                const get_id = await query(`SELECT *
+                                            FROM friend
+                                            WHERE id_of_sender = '${id_user}'`);
+
+                // lấy danh sách mà bản thân đã gửi lời mời
+                const listOfFriendRequests_ = await query(`SELECT id_of_recipient
+                                                           FROM friend
+                                                           WHERE id_of_sender = '${id_user}'
+                                                             AND allowed = 0`);
+                // đồng thời lấy sách lời mời mà bản thân mình nhận đc
+                const listOfFriendRequests2_ = await query(`SELECT id_of_sender
+                                                            FROM friend
+                                                            WHERE id_of_recipient = '${id_user}'
+                                                              AND allowed = 0`);
+                //Kiểm tra danh sách bạn bè đã xác nhận dựa trên id người gửi lời mời mà tìm
+                const check_accept_fr = await query(`SELECT 1 AS ch
+                                                     FROM friend
+                                                     WHERE id_of_sender = '${id_user}'
+                                                       AND allowed = 1`);
+                let listOfFriendRequests1_;
+                // Nếu id hiện đang sử dụng mà ko hề tồn tại ở phần id_of_sender thì tìm ngược lại ở phần id_of_recipient
+                if (check_accept_fr[0] == undefined) {
+                    const check_accept_fr1 = await query(`SELECT 1 AS ch
+                                                          FROM friend
+                                                          WHERE id_of_recipient = '${id_user}'
+                                                            AND allowed = 1`);
+                    if (check_accept_fr1[0] == undefined) {
+                        listOfFriendRequests1_ = await query(`SELECT id_of_sender
+                                                              FROM friend
+                                                              WHERE id_of_recipient = '${id_user}'
+                                                                AND allowed = 1`);
+                    } else {
+                        listOfFriendRequests1_ = await query(`SELECT id_of_sender
+                                                              FROM friend
+                                                              WHERE id_of_recipient = '${id_user}'
+                                                                AND allowed = 1`);
+                    }
+                }
+                // Còn không thì duyệt thẳng
+                else {
+                    if (check_accept_fr[0].ch == 1) {
+                        listOfFriendRequests1_ = await query(`SELECT id_of_recipient
+                                                              FROM friend
+                                                              WHERE id_of_sender = '${id_user}'
+                                                                AND allowed = 1`);
+                    }
+                }
+
+                for (var key in listOfFriendRequests_) {
+                    if (!listOfFriendRequests_.hasOwnProperty(key)) continue;
+                    var obj = listOfFriendRequests_[key];
+                    for (var prop in obj) {
+                        if (!obj.hasOwnProperty(prop)) continue;
+                        const getIdRecipient = await query(`SELECT *
+                                                            FROM profile_user
+                                                            WHERE id_of_user = '${obj[prop]}'`);
+                        getIdRecipient_.push(getIdRecipient);
+                    }
+                }
+
+                for (var key in listOfFriendRequests1_) {
+                    if (!listOfFriendRequests1_.hasOwnProperty(key)) continue;
+                    var obj = listOfFriendRequests1_[key];
+                    for (var prop in obj) {
+                        if (!obj.hasOwnProperty(prop)) continue;
+                        const getIdRecipient1 = await query(`SELECT *
+                                                             FROM profile_user
+                                                             WHERE id_of_user = '${obj[prop]}'`);
+                        getIdRecipient1_.push(getIdRecipient1);
+                    }
+                }
+
+                for (var key in listOfFriendRequests2_) {
+                    if (!listOfFriendRequests2_.hasOwnProperty(key)) continue;
+                    var obj = listOfFriendRequests2_[key];
+                    for (var prop in obj) {
+                        if (!obj.hasOwnProperty(prop)) continue;
+                        const getIdRecipient2 = await query(`SELECT *
+                                                             FROM profile_user
+                                                             WHERE id_of_user = '${obj[prop]}'`);
+                        getIdRecipient2_.push(getIdRecipient2);
+                    }
+                }
+                res.render('user/pageFriendsUser', {
+                    get_id,
+                    name_user,
+                    name_user1,
+                    id_user,
+                    id_using,
+                    result_profile,
+                    result_profile1,
+                    getIdRecipient_,
+                    getIdRecipient1_,
+                    getIdRecipient2_
+                });
+            }
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
 module.exports = {
     startApp, homeUser, registerAccountUser, loginAccountUser, post, comment, loadComment, replyComment, deleteComment,
     pageSearch, pagePostDetail, postDetail, pageProfile, editCoverImage, editAvatar, numberLike, countNumberLike,
-    sendFriendInvitations, deleteSendFriendInvitations
+    sendFriendInvitations, deleteSendFriendInvitations, acceptFriendInvitations, pageFriendsUser
 }

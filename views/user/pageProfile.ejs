@@ -41,7 +41,6 @@
         </div>
         <nav id="menu" class="res-menu">
             <ul>
-                <li><span>Trang chủ</span></li>
                 <li><span>Time Line</span>
                     <ul>
                         <li><a href="time-line.html" title="">timeline</a></li>
@@ -209,7 +208,6 @@
 
         <div class="top-area">
             <ul class="nav float-left pt-2 mt-1">
-                <li class="nav-item"><a class="nav-link" href=""><i class="ti-home"></i> Trang chủ</a></li>
                 <li class="nav-item ml-5">
                     <input class="form-control" type="text" id="inputSearch" placeholder="Tìm kiếm..."
                            onkeypress="enterSearch(event)">
@@ -350,6 +348,16 @@
                     Kết bạn
                 </label>
             </div>
+
+            <!-- nút kết bạn-->
+            <div class="edit-phto bg-primary" type="button" onclick="btnAcceptFriend(<%= id_using %>)"
+                 id="divBtnWaitFriend">
+                <i class="fas fa-plus"></i>
+                <label class="fileContainer" type="button" onclick="btnAcceptFriend(<%= id_using %>)">
+                    Xác nhận
+                </label>
+            </div>
+
             <!-- hủy lời kết bạn-->
             <div class="edit-phto bg-primary" type="button" onclick="btnUnFriend(<%= id_using %>)" id="divBtnUnFriend"
                  style="display: none">
@@ -363,6 +371,16 @@
                     <i class="far fa-save"></i><span>Lưu thay đổi</span>
                 </button>
             </div>
+
+            <!-- nút đã kết bạn thành công-->
+            <div class="edit-phto bg-primary" type="button" id="divMadeFriend" style="display: none"
+                 onclick="btnDeleteFriend(<%= id_using %>)">
+                <i class="fas user-check"></i>
+                <label class="fileContainer" type="button" onclick="btnDeleteFriend(<%= id_using %>)">
+                    Bạn bè
+                </label>
+            </div>
+
             <div class="container-fluid">
                 <div class="row merged">
                     <!--chỉnh sửa ảnh đại diện-->
@@ -376,7 +394,6 @@
                                            data-target="#modalEditAvatar">
                                         Chỉnh sửa ảnh đại diện
                                     </label>
-
                                 </div>
                             </figure>
                             <!-- Modal đăng bài-->
@@ -419,6 +436,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary w-100"
                                                     onclick="submitAvatar()">
+                                                <!--                                                onclick="submitAvatar()"-->
                                                 Lưu
                                             </button>
                                         </div>
@@ -1114,7 +1132,6 @@
 <script src="/js/script.js"></script>
 <!--axios-->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
 <!--đăng bài-->
 <script>
     const btnPost = async () => {
@@ -1255,19 +1272,38 @@
             let distinguish = "<%= distinguish %>";
             if (distinguish === 'mySelf') {
                 document.getElementById("divBtnAddFriend").style.display = "none";
+                document.getElementById("divBtnWaitFriend").style.display = "none";
+
             }
             if (distinguish === "others") {
                 document.getElementById("divBtnEditCoverImage").style.display = "none";
-                // document.getElementById("divBtnAddFriend").style.display = "none";
+                document.getElementById("divBtnWaitFriend").style.display = "none";
                 // document.getElementById("divBtnEditCoverImage").style.display = "none";
                 // document.getElementById("divBtnUnFriend").style.display = "block";
             }
 
+            if (distinguish === "waiting_to_accept") {
+                document.getElementById("divBtnWaitFriend").style.display = "block";
+                document.getElementById("divBtnAddFriend").style.display = "none";
+                document.getElementById("divBtnEditCoverImage").style.display = "none";
+                document.getElementById("divBtnUnFriend").style.display = "none";
+                document.getElementById("divMadeFriend").style.display = "none";
+            }
 
             if (distinguish === 'sending_to_friend') {
+                document.getElementById("divBtnWaitFriend").style.display = "none";
                 document.getElementById("divBtnAddFriend").style.display = "none";
                 document.getElementById("divBtnEditCoverImage").style.display = "none";
                 document.getElementById("divBtnUnFriend").style.display = "block";
+                document.getElementById("divMadeFriend").style.display = "none";
+            }
+
+            if (distinguish === 'made_friend') {
+                document.getElementById("divBtnWaitFriend").style.display = "none";
+                document.getElementById("divBtnAddFriend").style.display = "none";
+                document.getElementById("divBtnEditCoverImage").style.display = "none";
+                document.getElementById("divBtnUnFriend").style.display = "none";
+                document.getElementById("divMadeFriend").style.display = "block";
             }
         } catch (e) {
             console.error(e);
@@ -1512,7 +1548,11 @@
             });
             const body = result.data;
             if (body.msg === 'insert avatar success') {
-                window.open(`/user/pageProfile?id_user=<%= id_user %>`, `_self`);
+                alert('Đổi ảnh đại diện thành công');
+
+                $('#modalEditAvatar').modal('hide');
+
+                <!--window.open(`/user/pageProfile?id_user=<%= id_user %>`, `_self`);-->
             }
         } catch (e) {
             console.error(e);
@@ -1522,6 +1562,7 @@
 
 <!--kết bạn-->
 <script>
+    // thêm bạn
     const btnAddFriend = async (id_using) => {
         try {
             const result = await axios.get(`/sendFriendInvitations?id_sender=<%= id_user %>&id_recipient=${id_using}`);
@@ -1533,6 +1574,7 @@
             console.error(e);
         }
     }
+    // hủy lời mời
     const btnUnFriend = async (id_using) => {
         try {
             const result = await axios.get(`/deleteSendFriendInvitations?id_sender=<%= id_user %>&id_recipient=${id_using}`);
@@ -1540,8 +1582,32 @@
             if (body.msg === 'ok') {
                 window.open(`/user/pageProfile?id_user=<%= id_user %>&id_using=<%= id_using %>`, `_self`);
             }
-        }catch (e) {
+        } catch (e) {
             console.error(e);
+        }
+    }
+    // chấp nhận lời kết bạn
+    const btnAcceptFriend = async (id_using) => {
+        try {
+            const result = await axios.get(`/acceptFriendInvitations?id_sender=<%= id_user %>&id_recipient=${id_using}`);
+            const body = result.data;
+            if (body.msg === 'ok') {
+                window.open(`/user/pageProfile?id_user=<%= id_user %>&id_using=<%= id_using %>`, `_self`);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    // xóa bạn
+    const btnDeleteFriend = async (id_using) => {
+        try {
+            const result = await axios.get(`/deleteSendFriendInvitations?id_sender=<%= id_user %>&id_recipient=${id_using}`);
+            const body = result.data;
+            if (body.msg === 'ok') {
+                window.open(`/user/pageProfile?id_user=<%= id_user %>&id_using=<%= id_using %>`, `_self`);
+            }
+        } catch (e) {
+            console.log(e);
         }
     }
 </script>
